@@ -15,7 +15,7 @@ Magic!
 
 # Well, really, how does it work?
 Concordia-Groups is based on a hashmap that maps each course to its corresponding WhatsApp group link. 
-So, am I essentially saying it's hardcoded? Yes, you're right; you can find it at [/src/lib/courseToWhatsAppLink.ts](https://github.com/Tsounguinzo/concordia-groups/blob/main/src/lib/courseToWhatsAppLink.ts)
+So, am I essentially saying it's hardcoded? Yes, you're right; you can find it @ [/src/lib/courseToWhatsAppLink.ts](https://github.com/Tsounguinzo/concordia-groups/blob/main/src/lib/courseToWhatsAppLink.ts)
 
 Why hardcoding? Well, sometimes when you've got free time, you just go with the flow, even if it seems a bit silly. 
 But don't worry, I plan to move everything to Firestore eventually for more flexibility.
@@ -24,7 +24,7 @@ About those Discord links? Yeah, they all lead to my server right now. I totally
 stuff to Firestore. Imagine the hassle if I start using different Discord links for each group. 
 That would be a real headache. So, Firestore, here we come!
 
-Concordia-Groups uses the [concordia open data api](https://opendata.concordia.ca/admin/login.php) to collect information
+Concordia-Groups uses the [concordia open data api](https://www.concordia.ca/web/open-data.html?utm_source=vanity&utm_campaign=opendata) to collect information
 about the courses, you can find that @ [/src/routes/+page.server.ts/fetchCourseData](https://github.com/Tsounguinzo/concordia-groups/blob/main/src/routes/%2Bpage.server.ts), it stores cashes
 the data for like one week and all the data is basically in an array of courses that i play around with.
 
