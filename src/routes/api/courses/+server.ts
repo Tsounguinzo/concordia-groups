@@ -1,6 +1,7 @@
 import {json} from "@sveltejs/kit";
 import {courseToWhatsAppLink} from "$lib/courseToWhatsAppLink";
 import NodeCache from "node-cache";
+import {CONCORDIA_API_KEY, CONCORDIA_API_USER} from "$env/static/private";
 
 
 // Cache setup with a 1-week lifetime for course data.
@@ -12,7 +13,7 @@ export const GET = async () => {
     if (!coursesData.length) {
         const before = performance.now();
         const headers = {
-            'Authorization': `Basic ${btoa(`${import.meta.env.VITE_API_USER}:${import.meta.env.VITE_API_KEY}`)}`
+            'Authorization': `Basic ${btoa(`${CONCORDIA_API_USER}:${CONCORDIA_API_KEY}`)}`
         };
         const keys = Object.keys(courseToWhatsAppLink);
         const allPromises = [];
