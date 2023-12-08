@@ -4,7 +4,7 @@ import NodeCache from "node-cache";
 import {CONCORDIA_API_KEY, CONCORDIA_API_USER} from "$env/static/private";
 
 
-// Cache setup with a 1-week lifetime for course data.
+// Cache setup with a 1-week lifetime for the course data.
 const courseCache = new NodeCache({ stdTTL: 604800, checkperiod: 3600 });
 
 export const GET = async () => {
