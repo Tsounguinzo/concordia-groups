@@ -2,7 +2,7 @@
     import {page} from "$app/stores";
 </script>
 
-<div class="flex items-center justify-center w-screen h-screen text-3xl">
+<div class="flex items-center justify-center w-screen h-screen text-3xl text-white">
     <div class="error">
         <span class="status">{$page.status}</span>
         <div class="message">

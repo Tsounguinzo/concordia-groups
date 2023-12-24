@@ -20,11 +20,11 @@
 
 
     <!-- Modal -->
-    <div class="rounded-lg p-6 w-11/12 md:w-1/2 lg:w-1/3 border border-gray-300 shadow-lg z-10"
+    <div class="rounded-lg p-6 w-64 border border-gray-300 shadow-lg z-10 relative"
          on:click|stopPropagation>
 
         <!-- Close button -->
-        <button class="absolute top-2 right-3" aria-label="Close the model"
+        <button class="absolute top-3 left-3" aria-label="Close the model"
                 on:click={ () => isLinkPopUpModelOpen.set(false)}>
             <svg class="remixicon-icon" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                 <path
@@ -38,8 +38,9 @@
                 Join <br> {$linkPopUpModelData.courseName}
             </h3>
         </div>
+
         <div class="grid grid-cols-12 gap-4">
-            <div class="col-span-6 sm:col-span-6 md:col-span-12">
+            <div class="col-span-6 sm:col-span-6">
                 <div class="react-reveal"
                      style="animation-fill-mode: both; animation-duration: 800ms; animation-delay: 0ms; animation-iteration-count: 1; opacity: 1; animation-name: react-reveal-27677720191397-1;">
                     <span itemscope="true">
@@ -72,7 +73,7 @@
                     </span>
                 </div>
             </div>
-            <div class="col-span-6 sm:col-span-6 md:col-span-12">
+            <div class="col-span-6 sm:col-span-6">
                 <div class="react-reveal"
                      style="animation-fill-mode: both; animation-duration: 800ms; animation-delay: 0ms; animation-iteration-count: 1; opacity: 1; animation-name: react-reveal-27677720191397-1;">
                     <span itemscope="true">

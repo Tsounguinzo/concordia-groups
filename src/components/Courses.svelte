@@ -9,6 +9,7 @@
     import Grid from "./Grid.svelte";
     import {createSearchStore, searchHandler} from "$lib/stores/search";
     import {onDestroy} from "svelte";
+    import Footer from "./Footer.svelte";
 
     export let courses;
 
@@ -59,5 +60,7 @@
             {/each}
         </Grid>
     {/if}
+
+    <Footer/>
 
 </Wrapper>

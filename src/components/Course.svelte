@@ -55,7 +55,7 @@
                             alt={course.title}
                             loading="lazy"
                     />
-                    <div class="absolute inset-0 z-10 w-full h-full bg-gradient-to-t from-primary"></div>
+                    <div class="absolute inset-0 z-10 w-full h-full bg-gradient-to-t from-black"></div>
                 </div>
                 <h6 class="mb-2 text-lg duration-700 group-hover:-translate-y-2">{course.subject} {course.catalog} - {course.title}</h6>
                 <p class="text-sm duration-1000 opacity-60 group-hover:-translate-y-1">{truncate(course.description, 100)}</p>

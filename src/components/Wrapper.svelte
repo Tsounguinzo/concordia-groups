@@ -1,6 +1,6 @@
 <div class="text-gray-100 bg-primary">
     <div class="space-y-32">
-        <div class="px-4 mx-auto mb-64 max-w-7xl">
+        <div class="px-4 mx-auto mb-20 max-w-7xl">
             <slot/>
         </div>
     </div>
