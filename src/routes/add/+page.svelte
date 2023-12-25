@@ -1,9 +1,23 @@
 <script lang="ts">
+    import { enhance } from '$app/forms';
+
     let panelSelected: string = 'group-info';
-    let courseName: string;
-    let courseLink: string;
+
     let followUp: boolean = false;
     let groupDescriptionCopied: boolean = false;
+
+    let courseName: string;
+    let courseLink: string;
+    let phoneNumber: string;
+    const phoneRegex = "^\\+([0-9]{1,3})(\\s|-)?([0-9]+)(\\s|-)?([0-9]+)$";
+    const courseRegex = "^\\s*[a-zA-Z]{4}\\s*-?\\d{3,4}\\s*$";
+    const phoneRegexObj = new RegExp(phoneRegex);
+    const courseRegexObj = new RegExp(courseRegex);
+
+
+    $: validPhoneNumber = phoneRegexObj.test(phoneNumber);
+    $: validCourseName = courseRegexObj.test(courseName);
+
     export let form;
 
     async function handleCopy() {
@@ -19,16 +33,14 @@
         }
     }
 
-
     function updateSelection(value: string) {
         panelSelected = value;
     }
-
-    console.log(form)
 </script>
 
-<form class="flex h-screen w-full flex-col text-white" id="form-group" name="form-group" data-name="add-group" method="POST" aria-label="add-group">
+<form class="flex h-screen w-full flex-col text-white" id="form-add-group" name="form-group" data-name="add-group" method="POST" aria-label="add-group" use:enhance>
 
+    <!------------------------Header start----------------------------->
     <div class="flex w-full justify-between py-4 px-4 border-b border-b-white">
         <a class="flex items-center group" href="/">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
@@ -44,8 +56,9 @@
             Send
         </button>
     </div>
+    <!------------------------End Header------------------------->
 
-
+    <!------------------------Panels start----------------------------->
     <div class="relative flex w-full grow overflow-hidden max-md:flex-col">
 
         <div role="radiogroup" aria-required="false" dir="ltr"
@@ -92,8 +105,8 @@
                                     </label>
                                 </div>
                                 <input type="text" placeholder="e.g MATH 205"
-                                       class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:border-[#3898ec] outline-none border-2 bg-transparent"
-                                       name="name"
+                                       class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:{validCourseName ? 'border-[#3898ec]' : 'border-red-700'} outline-none border-2 bg-transparent"
+                                       name="name" pattern={courseRegex}
                                        bind:value={courseName} required></div>
                             <div class="mb-6 mt-4">
                                 <div class="mb-1.5 flex items-center">
@@ -101,7 +114,7 @@
                                         Whatsapp link <span class="text-red-500">*</span>
                                     </label>
                                 </div>
-                                <input type="text" placeholder="link to your whatsapp group"
+                                <input type="url" placeholder="link to your whatsapp group"
                                        class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:border-[#3898ec] outline-none border-2 bg-transparent"
                                        name="link"
                                        bind:value={courseLink} required>
@@ -123,13 +136,13 @@
                             <div class="mb-6 {followUp ? '' : 'hidden'}">
                                 <div class="mb-1.5 flex items-center">
                                     <label class="block font-medium" for="number">
-                                        Whatsapp phone number <span class="text-red-500">*</span>
+                                        Whatsapp number (international format) <span class="text-red-500">*</span>
                                     </label>
                                 </div>
                                 <div class="relative">
-                                    <input type="tel" placeholder="4385093906"
-                                           class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:border-[#3898ec] outline-none border-2 bg-transparent"
-                                           value="" name="number" required="{followUp ? 'required' : ''}">
+                                    <input type="tel" placeholder="e.g +14385093906" pattern={phoneRegex}
+                                           class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:{validPhoneNumber ? 'border-[#3898ec]' : 'border-red-700'} outline-none border-2 bg-transparent"
+                                           name="number" required="{followUp ? 'required' : ''}" bind:value={phoneNumber}>
                                 </div>
 
                             </div>
@@ -251,5 +264,6 @@
             </div>
         </div>
     </div>
+    <!------------------------Panels End----------------------------->
 
 </form>
