@@ -1,22 +1,20 @@
 <script lang="ts">
-    import { enhance } from '$app/forms';
+    import {enhance} from '$app/forms';
+    import {onMount} from "svelte";
+    import {doesCourseExist, isCourseValid} from "./utils";
+    import CustomInput from "./components/CustomInput.svelte";
 
     let panelSelected: string = 'group-info';
 
     let followUp: boolean = false;
     let groupDescriptionCopied: boolean = false;
 
-    let courseName: string;
-    let courseLink: string;
-    let phoneNumber: string;
-    const phoneRegex = "^\\+([0-9]{1,3})(\\s|-)?([0-9]+)(\\s|-)?([0-9]+)$";
-    const courseRegex = "^\\s*[a-zA-Z]{4}\\s*-?\\d{3,4}\\s*$";
-    const phoneRegexObj = new RegExp(phoneRegex);
-    const courseRegexObj = new RegExp(courseRegex);
-
-
-    $: validPhoneNumber = phoneRegexObj.test(phoneNumber);
-    $: validCourseName = courseRegexObj.test(courseName);
+    let courseName: string = '';
+    let courseLink: string = '';
+    let phoneNumber: string= '';
+    let course;
+    let link;
+    let number;
 
     export let form;
 
@@ -36,9 +34,67 @@
     function updateSelection(value: string) {
         panelSelected = value;
     }
+
+    function validateWhatsappLink() {
+        if (!number) return;
+
+        if (phoneNumber === '') {
+            number.setCustomValidity('whatsapp number required');
+        } else if (number.validity.patternMismatch) {
+            number.setCustomValidity('Must be in international format');
+        } else {
+            number.setCustomValidity('');
+        }
+    }
+
+    function validatePhoneNumber() {
+        if (!link) return;
+
+        if (courseLink === '') {
+            link.setCustomValidity('The whatsapp group link is needed');
+        } else if (link.validity.patternMismatch) {
+            link.setCustomValidity('Must be a whatsapp link');
+        } else {
+            link.setCustomValidity('');
+        }
+    }
+    async function validateCourseName() {
+        if (!course) return;
+
+        if (courseName === '') {
+            course.setCustomValidity('Course name cannot be empty.');
+        } else if (course.validity.patternMismatch) {
+            course.setCustomValidity('Must be 4 letters followed by 3 or 4 numbers .');
+        } else {
+            course.setCustomValidity('');
+        }
+
+        if (/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/.test(courseName)) {
+
+            const match = courseName.match(/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/);
+            const subject = match[1];
+            const catalog = match[2];
+
+
+            if (doesCourseExist(subject, catalog)) {
+                course.setCustomValidity('This course group already exit');
+            } else if (!(await isCourseValid(subject, catalog))) {
+                course.setCustomValidity('This course does not exist');
+            } else {
+                course.setCustomValidity('')
+            }
+        }
+    }
+
+    onMount(() => {
+        number = document.getElementById('followupNumber');
+        course = document.getElementById('courseName');
+        link = document.getElementById('whatsappGroupLink');
+    })
 </script>
 
-<form class="flex h-screen w-full flex-col text-white" id="form-add-group" name="form-group" data-name="add-group" method="POST" aria-label="add-group" use:enhance>
+<form class="flex h-screen w-full flex-col text-white" id="form-add-group" name="form-group" data-name="add-group"
+      method="POST" aria-label="add-group" use:enhance>
 
     <!------------------------Header start----------------------------->
     <div class="flex w-full justify-between py-4 px-4 border-b border-b-white">
@@ -98,27 +154,24 @@
                     <!-- Course info panel content-->
                     <div class="flex h-full grow flex-col overflow-y-auto px-2 pt-6 text-sm">
                         <div class="grow">
-                            <div class="mb-6">
-                                <div class="mb-1.5 flex items-center">
-                                    <label class="block font-medium" for="name">
-                                        Course Name <span class="text-red-500">*</span>
-                                    </label>
-                                </div>
-                                <input type="text" placeholder="e.g MATH 205"
-                                       class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:{validCourseName ? 'border-[#3898ec]' : 'border-red-700'} outline-none border-2 bg-transparent"
-                                       name="name" pattern={courseRegex}
-                                       bind:value={courseName} required></div>
-                            <div class="mb-6 mt-4">
-                                <div class="mb-1.5 flex items-center">
-                                    <label class="block font-medium" for="link">
-                                        Whatsapp link <span class="text-red-500">*</span>
-                                    </label>
-                                </div>
-                                <input type="url" placeholder="link to your whatsapp group"
-                                       class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:border-[#3898ec] outline-none border-2 bg-transparent"
-                                       name="link"
-                                       bind:value={courseLink} required>
-                            </div>
+                            <CustomInput
+                                    label="Course Name"
+                                    placeholder="e.g MATH 205"
+                                    name="courseName"
+                                    pattern={"^\\s*([a-zA-Z]{4})[\\s\\-]*(\\d{3,4})\\s*$"}
+                                    bind:value={courseName}
+                                    onBlur={validateCourseName}
+                            />
+
+                            <CustomInput
+                                    label="Whatsapp link"
+                                    placeholder="link to your whatsapp group"
+                                    name="whatsappGroupLink"
+                                    pattern="^https://chat.whatsapp.com/.*"
+                                    bind:value={courseLink}
+                                    onBlur={validateWhatsappLink}
+                            />
+
                             <div class="mb-6">
                                 <div class="mb-1.5 flex items-center">
                                     <label class="block font-medium" for="comment">Comment</label>
@@ -133,19 +186,16 @@
                                 </div>
                             </div>
 
-                            <div class="mb-6 {followUp ? '' : 'hidden'}">
-                                <div class="mb-1.5 flex items-center">
-                                    <label class="block font-medium" for="number">
-                                        Whatsapp number (international format) <span class="text-red-500">*</span>
-                                    </label>
-                                </div>
-                                <div class="relative">
-                                    <input type="tel" placeholder="e.g +14385093906" pattern={phoneRegex}
-                                           class="w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm focus:{validPhoneNumber ? 'border-[#3898ec]' : 'border-red-700'} outline-none border-2 bg-transparent"
-                                           name="number" required="{followUp ? 'required' : ''}" bind:value={phoneNumber}>
-                                </div>
-
-                            </div>
+                            <CustomInput
+                                    show={followUp}
+                                    required={followUp}
+                                    label="Whatsapp number (international format)"
+                                    placeholder="e.g +14384983769"
+                                    name="followupNumber"
+                                    pattern={"^\\+([0-9]{1,3})(\\s|-)?([0-9]+)(\\s|-)?([0-9]+)$"}
+                                    bind:value={phoneNumber}
+                                    onBlur={validatePhoneNumber}
+                            />
 
                             <div class="mb-6">
                                 <div class="mb-1.5 flex items-center">Acceptance Criteria</div>
