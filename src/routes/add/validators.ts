@@ -1,4 +1,5 @@
 import {courseToWhatsAppLink} from "$lib/courseToWhatsAppLink";
+
 export function validatePhoneNumber(element: any): void {
     if (!element) return;
     if (element.validity.valueMissing) {
@@ -29,11 +30,8 @@ export async function validateCourseName(courseName: string, element: any): Prom
         element.setCustomValidity('Course name cannot be empty.');
     } else if (element.validity.patternMismatch) {
         element.setCustomValidity('Must be 4 letters followed by 3 or 4 numbers .');
-    } else {
-        element.setCustomValidity('');
-    }
+    } else if (/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/.test(courseName)) {
 
-    if (/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/.test(courseName)) {
 
         const match = courseName.match(/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/);
 
@@ -42,21 +40,22 @@ export async function validateCourseName(courseName: string, element: any): Prom
         // @ts-ignore
         const catalog = match[2];
 
-        const courseValid = await isCourseValid(subject, catalog);
-
         if (doesCourseExist(subject, catalog)) {
             element.setCustomValidity('This course group already exits.');
-        } else if (!courseValid) {
+        } else if (!(await isCourseValid(subject, catalog))) {
             element.setCustomValidity('The specified course does not exist.');
         } else {
             element.setCustomValidity('')
         }
 
+    } else {
+        element.setCustomValidity('')
     }
+
 }
 
 
- async function isCourseValid(subject: string, catalog: string) {
+async function isCourseValid(subject: string, catalog: string) {
     try {
         const response = await fetch(`/api/course?course=${subject}/${catalog}`);
 
@@ -72,7 +71,7 @@ export async function validateCourseName(courseName: string, element: any): Prom
     }
 }
 
- function doesCourseExist(subject: string, catalog: string) {
+function doesCourseExist(subject: string, catalog: string) {
     const toCheck = `${subject.toUpperCase()}_${catalog}_UGRD`
     return toCheck in courseToWhatsAppLink;
 }

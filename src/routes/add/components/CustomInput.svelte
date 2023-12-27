@@ -16,6 +16,7 @@
     export let invalidClass: string = "border-red-700";
     export let onBlurCallback = () => {};
     export let onInvalidCallback = () => {};
+    export let onFocusCallback = () => {};
 
     $: isValid = new RegExp(pattern).test(value);
 
@@ -45,6 +46,7 @@
             use:typing={updateTypingStatus}
             on:blur={onBlurCallback}
             on:invalid={onInvalidCallback}
+            on:focus={onFocusCallback}
     >
 </div>
 

@@ -157,7 +157,7 @@
                                     bind:value={courseName}
                                     label="Course Name"
                                     name="courseName"
-                                    onBlurCallback={validateCourseNameWrapper}
+                                    onFocusCallback={validateCourseNameWrapper}
                                     pattern={"^\\s*([a-zA-Z]{4})[\\s\\-]*(\\d{3,4})\\s*$"}
                                     placeholder="e.g MATH 205"
                             />
