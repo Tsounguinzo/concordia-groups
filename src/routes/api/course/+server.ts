@@ -20,6 +20,7 @@ export async function GET({ request }: { request: RequestEvent }) {
         const courseData = await fetchCourseData(subject, catalog, headers);
         return json({ course: courseData }, { status: 202 });
     } catch (error) {
+        // @ts-ignore
         return json({ error: error.message }, { status: 404 });
     }
 }

@@ -1,20 +1,21 @@
 <script lang="ts">
-    import {enhance} from '$app/forms';
     import {onMount} from "svelte";
-    import {doesCourseExist, isCourseValid} from "./utils";
+    import {validateCourseName, validatePhoneNumber, validateWhatsappLink} from "./validators";
+
     import CustomInput from "./components/CustomInput.svelte";
+    import PopUp from "./components/PopUp.svelte";
 
     let panelSelected: string = 'group-info';
 
-    let followUp: boolean = false;
     let groupDescriptionCopied: boolean = false;
+    let showSubmissionMessage: boolean = false;
 
     let courseName: string = '';
     let courseLink: string = '';
-    let phoneNumber: string= '';
-    let course;
-    let link;
-    let number;
+    let followUpNumber: string = '';
+    let courseNameElement;
+    let courseLinkElement;
+    let whatsappNumberElement;
 
     export let form;
 
@@ -35,80 +36,74 @@
         panelSelected = value;
     }
 
-    function validateWhatsappLink() {
-        if (!number) return;
-
-        if (phoneNumber === '') {
-            number.setCustomValidity('whatsapp number required');
-        } else if (number.validity.patternMismatch) {
-            number.setCustomValidity('Must be in international format');
-        } else {
-            number.setCustomValidity('');
-        }
+    function validatePhoneNumberWrapper() {
+        validatePhoneNumber(whatsappNumberElement);
     }
 
-    function validatePhoneNumber() {
-        if (!link) return;
-
-        if (courseLink === '') {
-            link.setCustomValidity('The whatsapp group link is needed');
-        } else if (link.validity.patternMismatch) {
-            link.setCustomValidity('Must be a whatsapp link');
-        } else {
-            link.setCustomValidity('');
-        }
+    function validateWhatsappLinkWrapper() {
+        validateWhatsappLink(courseLinkElement);
     }
-    async function validateCourseName() {
-        if (!course) return;
 
-        if (courseName === '') {
-            course.setCustomValidity('Course name cannot be empty.');
-        } else if (course.validity.patternMismatch) {
-            course.setCustomValidity('Must be 4 letters followed by 3 or 4 numbers .');
-        } else {
-            course.setCustomValidity('');
-        }
-
-        if (/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/.test(courseName)) {
-
-            const match = courseName.match(/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/);
-            const subject = match[1];
-            const catalog = match[2];
-
-
-            if (doesCourseExist(subject, catalog)) {
-                course.setCustomValidity('This course group already exit');
-            } else if (!(await isCourseValid(subject, catalog))) {
-                course.setCustomValidity('This course does not exist');
-            } else {
-                course.setCustomValidity('')
-            }
-        }
+    function validateCourseNameWrapper() {
+        validateCourseName(courseName, courseNameElement);
     }
 
     onMount(() => {
-        number = document.getElementById('followupNumber');
-        course = document.getElementById('courseName');
-        link = document.getElementById('whatsappGroupLink');
+        whatsappNumberElement = document.getElementById('followupNumber');
+        courseNameElement = document.getElementById('courseName');
+        courseLinkElement = document.getElementById('whatsappGroupLink');
+
+        const savedPopupVisibility = window.localStorage.getItem('popupVisible');
+        showSubmissionMessage = savedPopupVisibility === 'true';
+        window.localStorage.removeItem('popupVisible');
     })
+
+    //|preventDefault
 </script>
 
-<form class="flex h-screen w-full flex-col text-white" id="form-add-group" name="form-group" data-name="add-group"
-      method="POST" aria-label="add-group" use:enhance>
+{#if showSubmissionMessage}
+    <PopUp bind:show={showSubmissionMessage}>
+        {#if form}
+            {#if form.success}
+                {#if form.followup}
+                    <span class="text-[#155724]">
+                        <strong>Success!</strong> Check your WhatsApp for follow-up messages.
+                    </span>
+                {:else }
+                    <span class="text-[#721c24]">
+                        <strong>Error:</strong> Follow-up via WhatsApp couldn't be sent. Please ensure your number is correct.
+                    </span>
+                {/if}
+            {:else }
+                <span class="text-[#721c24]">
+                    <strong>Error:</strong> Submission failed. Please try again later.
+                </span>
+            {/if}
+        {:else }
+            <span class="text-[#721c24]">
+                <strong>Error:</strong> Unable to submit your form at this time. Please try again later.
+            </span>
+        {/if}
+    </PopUp>
+
+{/if}
+
+<form aria-label="add-group" class="flex h-screen w-full flex-col text-white" data-name="add-group" id="form-add-group"
+      method="POST" name="form-group" on:submit={() => window.localStorage.setItem('popupVisible', 'true')}>
 
     <!------------------------Header start----------------------------->
     <div class="flex w-full justify-between py-4 px-4 border-b border-b-white">
         <a class="flex items-center group" href="/">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
-                 class="duration-500 group-hover:-translate-x-2">
-                <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                      stroke-linejoin="round"></path>
+            <svg class="duration-500 group-hover:-translate-x-2" fill="none" height="24" viewBox="0 0 24 24" width="24"
+                 xmlns="http://www.w3.org/2000/svg">
+                <path d="M15 5L8 12L15 19" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                      stroke-width="2"></path>
             </svg>
             <div class="duration-500 group-hover:-translate-x-2 pl-1 font-medium">All Groups</div>
         </a>
 
-        <button type="submit"
-                class="border border-green-400 px-2 py-1 rounded-lg bg-green-500 hover:bg-green-600 duration-500 ease-in-out">
+        <button class="border border-green-400 px-2 py-1 rounded-lg bg-green-500 hover:bg-green-600 duration-500 ease-in-out"
+                type="submit">
             Send
         </button>
     </div>
@@ -117,21 +112,25 @@
     <!------------------------Panels start----------------------------->
     <div class="relative flex w-full grow overflow-hidden max-md:flex-col">
 
-        <div role="radiogroup" aria-required="false" dir="ltr"
-             class="flex w-full overflow-hidden rounded-xl p-1.5 md:hidden mb-2 flex-shrink-0 self-center"
-             tabindex="0" style="outline: none;">
-            <button type="button" role="radio"
-                    aria-checked="{panelSelected === 'group-info' ? 'true' : 'false'}"
-                    data-state="{panelSelected === 'group-info' ? 'checked' : 'unchecked'}" value="group-info"
+        <div aria-required="false"
+             class="flex w-full overflow-hidden rounded-xl p-1.5 md:hidden mb-2 flex-shrink-0 self-center" dir="ltr"
+             role="radiogroup"
+             style="outline: none;" tabindex="0">
+            <button aria-checked="{panelSelected === 'group-info' ? 'true' : 'false'}"
                     class="text-md w-1/2 {panelSelected === 'group-info' ? 'bg-gray-800' : 'unchecked'} flex-grow rounded-lg p-1.5 font-medium md:w-1/2"
+                    data-state="{panelSelected === 'group-info' ? 'checked' : 'unchecked'}"
+                    on:click={() => updateSelection('group-info')} role="radio"
                     tabindex="0"
-                    on:click={() => updateSelection('group-info')}>Group Info
+                    type="button"
+                    value="group-info">Group Info
             </button>
-            <button type="button" role="radio" aria-checked="{panelSelected === 'preview' ? 'true' : 'false'}"
-                    data-state="{panelSelected === 'preview' ? 'checked' : 'unchecked'}" value="preview"
+            <button aria-checked="{panelSelected === 'preview' ? 'true' : 'false'}"
                     class="text-md w-1/2 {panelSelected === 'preview' ? 'bg-gray-800' : 'unchecked'} flex-grow rounded-lg p-1.5 font-medium md:w-1/2"
+                    data-state="{panelSelected === 'preview' ? 'checked' : 'unchecked'}"
+                    on:click={() => updateSelection('preview')} role="radio"
                     tabindex="-1"
-                    on:click={() => updateSelection('preview')}>Preview
+                    type="button"
+                    value="preview">Preview
             </button>
         </div>
 
@@ -155,21 +154,21 @@
                     <div class="flex h-full grow flex-col overflow-y-auto px-2 pt-6 text-sm">
                         <div class="grow">
                             <CustomInput
-                                    label="Course Name"
-                                    placeholder="e.g MATH 205"
-                                    name="courseName"
-                                    pattern={"^\\s*([a-zA-Z]{4})[\\s\\-]*(\\d{3,4})\\s*$"}
                                     bind:value={courseName}
-                                    onBlur={validateCourseName}
+                                    label="Course Name"
+                                    name="courseName"
+                                    onBlurCallback={validateCourseNameWrapper}
+                                    pattern={"^\\s*([a-zA-Z]{4})[\\s\\-]*(\\d{3,4})\\s*$"}
+                                    placeholder="e.g MATH 205"
                             />
 
                             <CustomInput
-                                    label="Whatsapp link"
-                                    placeholder="link to your whatsapp group"
-                                    name="whatsappGroupLink"
-                                    pattern="^https://chat.whatsapp.com/.*"
                                     bind:value={courseLink}
-                                    onBlur={validateWhatsappLink}
+                                    label="Whatsapp link"
+                                    name="whatsappGroupLink"
+                                    onInvalidCallback={validateWhatsappLinkWrapper}
+                                    pattern="^https://chat.whatsapp.com/.*"
+                                    placeholder="link to your whatsapp group"
                             />
 
                             <div class="mb-6">
@@ -179,22 +178,20 @@
                                 <div class="relative">
                                 <textarea
                                         class="w-full text-sm overflow-visible rounded-lg focus:border-[#3898ec] outline-none border-2 bg-transparent px-3 py-2 h-32 resize-none"
-                                        rows="8"
-                                        placeholder="Any thing you want to point out?"
                                         name="comment"
+                                        placeholder="Any thing you want to point out?"
+                                        rows="8"
                                 ></textarea>
                                 </div>
                             </div>
 
                             <CustomInput
-                                    show={followUp}
-                                    required={followUp}
+                                    bind:value={followUpNumber}
                                     label="Whatsapp number (international format)"
-                                    placeholder="e.g +14384983769"
                                     name="followupNumber"
-                                    pattern={"^\\+([0-9]{1,3})(\\s|-)?([0-9]+)(\\s|-)?([0-9]+)$"}
-                                    bind:value={phoneNumber}
-                                    onBlur={validatePhoneNumber}
+                                    onInvalidCallback={validatePhoneNumberWrapper}
+                                    pattern={"^((\\+)?[1-9]{1,3})?([\\-\\s\\.])?((\\(\\d{1,4}\\))|\\d{1,4})(([\\-\\s\\.])?[0-9]{1,12}){1,2}$"}
+                                    placeholder="e.g +1 438 589 4367"
                             />
 
                             <div class="mb-6">
@@ -203,33 +200,34 @@
                                     <div class="rounded-lg text-gray-500">
                                         You must follow the specification for the whatsapp group as shown in the
                                         preview,
-                                        <a href="/concordia-logo.png" download="group-icon"
-                                           class="text-blue-500 animate-pulse">click here</a> to download the group icon
+                                        <a class="text-blue-500 animate-pulse" download="group-icon"
+                                           href="/concordia-logo.png">click here</a> to download the group icon
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="mb-6">
+                            <!--div class="mb-6">
                                 <div class="mb-1.5 flex items-center">
                                     <div class="block font-medium">
-                                        Do you want to receive a follow up on whatsapp?
+                                        Do you want to receive a whatsapp follow up?
                                     </div>
                                     <div class="flex flex-row mx-2">
                                         <label class="ml-1 cursor-pointer">
                                             <input
-                                                    name="followup" class="cursor-pointer"
-                                                    type="radio" id="followup" value={true}
-                                                    bind:group={followUp}> Yes
+                                                    bind:group={followUp} class="cursor-pointer"
+                                                    id="followup" name="followup" type="radio"
+                                                    value={true}> Yes
                                         </label>
                                         <label class="ml-2 cursor-pointer">
                                             <input
-                                                    name="followup" class="cursor-pointer"
-                                                    type="radio" id="followup" value={false}
-                                                    bind:group={followUp}> No
+                                                    bind:group={followUp} class="cursor-pointer"
+                                                    id="followup" name="followup" type="radio"
+                                                    value={false}> No
                                         </label>
                                     </div>
                                 </div>
-                            </div>
+                            </div-->
+
                         </div>
                     </div>
 
@@ -256,7 +254,7 @@
 
                     <!-- Course review panel content-->
                     <div class="relative grow overflow-auto px-2 h-full">
-                        <div role="presentation" class="flex h-full flex-col" tabindex="-1">
+                        <div class="flex h-full flex-col" role="presentation" tabindex="-1">
                             <div class="flex-1 overflow-hidden">
                                 <div class="relative h-full w-full">
                                     <div class="absolute left-0 top-0 h-full w-full">
@@ -264,7 +262,7 @@
                                             <div class="relative">
                                                 <div class="mb-3 h-[82px] w-[82px]">
                                                     <div class="relative flex h-full items-center justify-center rounded-full bg-white text-black">
-                                                        <img src="/concordia-logo.png" alt="concordia logo">
+                                                        <img alt="concordia logo" src="/concordia-logo.png">
                                                     </div>
                                                 </div>
                                             </div>

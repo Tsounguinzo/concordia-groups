@@ -1,5 +1,5 @@
 
-//handle typing
+  // @ts-ignore
   export function typing(node, callback: (typing: boolean) => void) {
     let typingTimer:NodeJS.Timeout;
 

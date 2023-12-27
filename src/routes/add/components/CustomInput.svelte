@@ -14,7 +14,8 @@
     export let baseClass = "w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm outline-none border-2 bg-transparent";
     export let validClass: string = "border-green-400";
     export let invalidClass: string = "border-red-700";
-    export let onBlur;
+    export let onBlurCallback = () => {};
+    export let onInvalidCallback = () => {};
 
     $: isValid = new RegExp(pattern).test(value);
 
@@ -35,14 +36,15 @@
     <input
             id={name}
             placeholder={placeholder}
-            class={`${baseClass} focus:${isValid ? '' : invalidClass} ${isValid ? validClass : value ? invalidClass : ''}`}
+            class={`${baseClass} ${isValid ? '' : 'focus:' + invalidClass} ${isValid ? validClass : value ? invalidClass : ''}`}
             name={name}
             pattern={pattern}
             bind:value={value}
-            required={required}
+            required={required ? 'required' : ''}
             class:focus:border-yellow-300={isUserTyping === true}
             use:typing={updateTypingStatus}
-            on:blur={onBlur}
+            on:blur={onBlurCallback}
+            on:invalid={onInvalidCallback}
     >
 </div>
 
