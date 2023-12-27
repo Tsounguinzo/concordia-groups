@@ -20,7 +20,7 @@
 
 
     <!-- Modal -->
-    <div class="rounded-lg p-6 w-64 border border-gray-300 shadow-lg z-10 relative"
+    <div class="rounded-lg p-6 w-72 border border-gray-300 shadow-lg z-10 relative"
          on:click|stopPropagation>
 
         <!-- Close button -->
