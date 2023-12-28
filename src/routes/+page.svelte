@@ -1,7 +1,7 @@
 <script lang="ts">
     import {Shadow} from "svelte-loading-spinners";
-    import Courses from "../components/Courses.svelte";
-    import Error from "../components/Error.svelte";
+    import Courses from "$lib/components/Courses.svelte";
+    import Error from "$lib/components/layout/Error.svelte";
     import {onMount} from "svelte";
 
     let courses = Promise.resolve({courses: []});

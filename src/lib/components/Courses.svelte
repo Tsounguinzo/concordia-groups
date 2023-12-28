@@ -1,16 +1,17 @@
 <script lang="ts">
-    import {isLinkPopUpModelOpen} from "$lib/stores/PopUpStore.js";
-    import Header from "./Header.svelte";
+    import {isLinkPopUpModelOpen} from "$lib/stores";
+    import Header from "./layout/Header.svelte";
     import Wrapper from "./Wrapper.svelte";
     import SearchBox from "./SearchBox.svelte";
-    import PopUp from "./PopUp.svelte";
+    import PopUp from "./common/PopUp.svelte";
     import NoContent from "./NoContent.svelte";
     import Grid from "./Grid.svelte";
-    import {createSearchStore, searchHandler} from "$lib/stores/search";
+    import {createSearchStore, searchHandler} from "$lib/utiles";
     import {onDestroy} from "svelte";
     import type {Course} from "$lib/types";
-    import Footer from "./Footer.svelte";
+    import Footer from "./layout/Footer.svelte";
     import CourseElement from "./CourseElement.svelte";
+    import type {SearchStoreModel} from "$lib/types";
 
     export let courses;
 
@@ -20,7 +21,7 @@
     const searchStore = createSearchStore(searchCourses);
 
     //When the search model changes, the handler updates the view.
-    const unsubscribe = searchStore.subscribe((model) => searchHandler(model));
+    const unsubscribe = searchStore.subscribe((model: SearchStoreModel<Course>) => searchHandler(model));
 
     onDestroy(() => {
         unsubscribe();

@@ -1,5 +1,5 @@
 import {json} from "@sveltejs/kit";
-import {courseToWhatsAppLink} from "$lib/courseToWhatsAppLink";
+import {coursesAndThierLinks} from "$lib/stores";
 import NodeCache from "node-cache";
 import {CONCORDIA_API_KEY, CONCORDIA_API_USER} from "$env/static/private";
 
@@ -15,7 +15,7 @@ export const GET = async () => {
         const headers = {
             'Authorization': `Basic ${btoa(`${CONCORDIA_API_USER}:${CONCORDIA_API_KEY}`)}`
         };
-        const keys = Object.keys(courseToWhatsAppLink);
+        const keys = Object.keys(coursesAndThierLinks);
         const allPromises = [];
         const chunkSize = 50;
 
@@ -56,6 +56,6 @@ const fetchCourseData = async (key: string, headers: Record<string, string>) => 
     return {
         ...course[0],
         description: description[0]?.description,
-        whatsappLink: courseToWhatsAppLink[key as keyof typeof courseToWhatsAppLink]
+        whatsappLink: coursesAndThierLinks[key as keyof typeof coursesAndThierLinks]
     };
 };

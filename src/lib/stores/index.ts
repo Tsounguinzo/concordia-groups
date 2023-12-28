@@ -1,5 +1,6 @@
-/** The list of available study groups with their respective links */
-export const courseToWhatsAppLink = {
+import {writable} from "svelte/store";
+
+export const coursesAndThierLinks = {
     'ECON_201_UGRD': 'https://chat.whatsapp.com/DNQVq7VCNoMBUwCIh9FKEL',
     'ECON_203_UGRD': 'https://chat.whatsapp.com/BTeESFcPY3bEPsvCBfOfb5',
     'PHYS_284_UGRD': 'https://chat.whatsapp.com/C2kieoBaiDnDyAYwZYksoe',
@@ -64,3 +65,33 @@ export const courseToWhatsAppLink = {
     'MAST_218_UGRD': 'https://chat.whatsapp.com/IWfMdrq005P7qrJwMxWDAD',
     'ENCS_282_UGRD': 'https://chat.whatsapp.com/EaGUCwNpHjS7uqTBThVevo',
 };
+
+export const subjectBaseUrls: { [key: string]: string } = {
+    'ECON': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-080-department-of-economics/economics-courses.html',
+    'BIOL': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-030-department-of-biology/biology-courses.html',
+    'PHYS': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-230-department-of-physics/physics-courses.html',
+    'MATH': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-200-department-of-mathematics-and-statistics/mathematics-and-statistics-courses.html',
+    'MAST': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-200-department-of-mathematics-and-statistics/mathematics-and-statistics-courses.html',
+    'MIAE': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-60-engineering-course-descriptions.html',
+    'ENGR': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-60-engineering-course-descriptions.html',
+    'CHEM': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-050-department-of-chemistry-and-biochemistry/chemistry-and-biochemistry-courses.html',
+    'COMP': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-70-department-of-computer-science-and-software-engineering/section-71-70-10-computer-science-and-software-engineering-courses.html',
+    'SOEN': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-70-department-of-computer-science-and-software-engineering/section-71-70-10-computer-science-and-software-engineering-courses.html',
+
+};
+
+export const config = {
+    name: "Study groups @Concordia",
+    url: "https://concordia-groups.web.app",
+    ogImage: "/og.png",
+    description:
+        "Join your course's study group chat on WhatsApp or Discord",
+    links: {
+        twitter: "",
+        github: ""
+    },
+    keywords: `Concordia University,Study groups,help,courses,Course Chat,WhatsApp Course Groups,Study Chat,Discord Study Groups`
+};
+
+export let isLinkPopUpModelOpen = writable(false);
+export let linkPopUpModelData = writable({courseName: "", courseWhatsappURL: ""})

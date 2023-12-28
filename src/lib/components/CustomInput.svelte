@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {typing} from "../actions";
+    import {typing} from "$lib/actions";
 
     export let label: string = '';
     export let placeholder: string = '';

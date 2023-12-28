@@ -11,4 +11,5 @@ node_modules
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 firebase-debug.log
+firebase.json
 service-account.json

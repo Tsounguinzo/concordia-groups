@@ -1,4 +1,4 @@
-import {courseToWhatsAppLink} from "$lib/courseToWhatsAppLink";
+import {coursesAndThierLinks} from "$lib/stores";
 
 export function validatePhoneNumber(element: any): void {
     if (!element) return;
@@ -51,6 +51,6 @@ export async function validateCourseName(courseName: string, element: any): Prom
 }
 
 function doesCourseExist(subject: string, catalog: string) {
-    const toCheck = `${subject.toUpperCase()}_${catalog}_UGRD`
-    return toCheck in courseToWhatsAppLink;
+    const course = `${subject.toUpperCase()}_${catalog}_UGRD`
+    return course in coursesAndThierLinks;
 }

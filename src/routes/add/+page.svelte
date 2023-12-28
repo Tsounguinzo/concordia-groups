@@ -1,9 +1,10 @@
 <script lang="ts">
     import {onMount} from "svelte";
-    import {validateCourseName, validatePhoneNumber, validateWhatsappLink} from "./validators";
+    import {validateCourseName, validatePhoneNumber, validateWhatsappLink} from "$lib/validators";
 
-    import CustomInput from "./components/CustomInput.svelte";
-    import PopUp from "./components/PopUp.svelte";
+    import CustomInput from "$lib/components/CustomInput.svelte";
+    import {copyToClipboard} from "$lib/utiles";
+    import SubmissionModel from "$lib/components/common/SubmissionModel.svelte";
 
     let panelSelected: string = 'group-info';
 
@@ -19,12 +20,11 @@
 
     export let form;
 
-    async function handleCopy() {
-        if (!groupDescriptionCopied) {
-
-            await navigator.clipboard.writeText(`Link 📍${courseLink}`);
-            groupDescriptionCopied = !groupDescriptionCopied; // Toggle to show the second SVG
-
+    async function copyToClipboardSVGSwitching() {
+        const copySuccessful = copyToClipboard(`Link 📍${courseLink}`);
+        if (!groupDescriptionCopied && copySuccessful) {
+            // Toggle to show the second SVG
+            groupDescriptionCopied = !groupDescriptionCopied;
             // After 1 seconds, toggle back
             setTimeout(() => {
                 groupDescriptionCopied = !groupDescriptionCopied;
@@ -61,7 +61,7 @@
 </script>
 
 {#if showSubmissionMessage}
-    <PopUp bind:show={showSubmissionMessage}>
+    <SubmissionModel bind:show={showSubmissionMessage}>
         {#if form}
             {#if form.success}
                 {#if form.followup}
@@ -83,7 +83,7 @@
                 <strong>Error:</strong> Unable to submit your form at this time. Please try again later.
             </span>
         {/if}
-    </PopUp>
+    </SubmissionModel>
 
 {/if}
 
@@ -280,7 +280,7 @@
                                                         <div class="p-4 pl-2 flex flex-row items-center justify-between">
                                                             <pre class="overflow-hidden">Link 📍<a href="{courseLink}"
                                                                                                   class="text-blue-400"> {courseLink} </a></pre>
-                                                            <button class="px-1" on:click={handleCopy} type="button">
+                                                            <button class="px-1" on:click={copyToClipboardSVGSwitching} type="button">
                                                                 <svg width="20" height="20" viewBox="0 0 24 24"
                                                                      fill="none"
                                                                      xmlns="http://www.w3.org/2000/svg"

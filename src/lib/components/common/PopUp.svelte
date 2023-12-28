@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {isLinkPopUpModelOpen, linkPopUpModelData} from "$lib/stores/PopUpStore";
+    import {isLinkPopUpModelOpen, linkPopUpModelData} from "$lib/stores";
 
     function closePopup() {
         isLinkPopUpModelOpen.set(false);

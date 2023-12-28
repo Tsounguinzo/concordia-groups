@@ -1,17 +1,8 @@
-import { json } from "@sveltejs/kit";
-import type { RequestEvent } from '@sveltejs/kit';
-import { CONCORDIA_API_KEY, CONCORDIA_API_USER } from "$env/static/private";
+import {json} from "@sveltejs/kit";
+import {CONCORDIA_API_KEY, CONCORDIA_API_USER} from "$env/static/private";
 
-export async function GET({ request }: { request: RequestEvent }) {
-    const url = new URL(request.url);
-    const courseParam = url.searchParams.get('course');
+export const getCourse = async (subject: string, catalog: number) => {
 
-    // Sanitize and validate the courseParam
-    if (!courseParam || !/^[a-zA-Z]+\/\d+$/.test(courseParam)) {
-        return json({ error: 'Invalid course format. Expected format: subject/catalog' }, { status: 400 });
-    }
-
-    const [subject, catalog] = courseParam.split('/');
     const headers = {
         'Authorization': `Basic ${btoa(`${CONCORDIA_API_USER}:${CONCORDIA_API_KEY}`)}`
     };
@@ -25,7 +16,7 @@ export async function GET({ request }: { request: RequestEvent }) {
     }
 }
 
-const fetchCourseData = async (subject: string, catalog: string, headers: Record<string, string>) => {
+const fetchCourseData = async (subject: string, catalog: number, headers: Record<string, string>) => {
     const courseURL = `https://opendata.concordia.ca/API/v1/course/catalog/filter/${subject}/${catalog}/UGRD`;
     const course = await fetch(courseURL, { headers }).then(res => res.json());
 

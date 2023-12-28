@@ -1,13 +1,6 @@
-import {
-    CLOUD_API_ACCESS_TOKEN,
-    CLOUD_API_VERSION,
-    SENDGRID_API,
-    TEMPLATE_ID,
-    WA_PHONE_NUMBER_ID
-} from '$env/static/private'
-import sendgrid from "@sendgrid/mail";
-
-sendgrid.setApiKey(SENDGRID_API);
+import {TEMPLATE_ID} from '$env/static/private'
+import {send_whatsapp_message} from "$lib/apis/whatsapp";
+import {send_email} from "$lib/apis/sendgrid";
 
 export const actions = {
     default: async ({request}) => {
@@ -33,54 +26,24 @@ export const actions = {
             }
         }
 
-        const success = await sendgrid
-            .send(msg)
-            .then((response) => {
-                return response[0].statusCode == 202
-            })
-            .catch(() => {
-                return false
-            })
+        const whatsappMessage = {
+            messaging_product: "whatsapp",
+            to: whatsappNumber,
+            type: 'template',
+            template: {
+                name: "request_acknowledgment",
+                language: {
+                    code: "en_US"
+                }
+            }
+        };
 
-        const whatsappMessageSent = await send_message(whatsappNumber)
+        const success = await send_email(msg);
+        const whatsappMessageSent = await send_whatsapp_message(whatsappMessage)
 
         return {
             success: success,
             followup: whatsappMessageSent
         }
     }
-}
-
-async function send_message(phoneNbr: number) {
-    const data = {
-        messaging_product: "whatsapp",
-        to: phoneNbr,
-        type: 'template',
-        template: {
-            name: "request_acknowledgment",
-            language: {
-                code: "en_US"
-            }
-        }
-    };
-
-    const postReq = {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${CLOUD_API_ACCESS_TOKEN}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-    };
-
-    const messageURL = `https://graph.facebook.com/${CLOUD_API_VERSION}/${WA_PHONE_NUMBER_ID}/messages`
-
-    return await fetch(messageURL, postReq)
-        .then(res => {
-            return res.status === 200
-        })
-        .catch(() => {
-            return false
-        });
-
 }
