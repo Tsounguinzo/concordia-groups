@@ -1,7 +1,7 @@
 export const siteConfig = {
     name: "Study groups @Concordia",
     url: "https://concordia-groups.web.app",
-    ogImage: "/og.PNG",
+    ogImage: "/og.png",
     description:
         "Join your course's study group chat on WhatsApp or Discord",
     links: {
