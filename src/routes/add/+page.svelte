@@ -13,9 +13,9 @@
     let courseName: string = '';
     let courseLink: string = '';
     let followUpNumber: string = '';
-    let courseNameElement;
-    let courseLinkElement;
-    let whatsappNumberElement;
+    let courseNameElement: HTMLElement | null;
+    let courseLinkElement: HTMLElement | null;
+    let whatsappNumberElement: HTMLElement | null;
 
     export let form;
 
@@ -58,7 +58,6 @@
         window.localStorage.removeItem('popupVisible');
     })
 
-    //|preventDefault
 </script>
 
 {#if showSubmissionMessage}

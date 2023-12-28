@@ -22,7 +22,7 @@ export const GET = async () => {
         // Split requests to mitigate API request limitations.
         for (let i = 0; i < keys.length; i += chunkSize) {
             const chunk = keys.slice(i, i + chunkSize);
-            const chunkPromises = chunk.map(key => fetchCourseData(key, headers).catch(error => {
+            const chunkPromises = chunk.map(key => fetchCourseData(key, headers).catch(() => {
                 return null;  // null indicates a failed fetch
             }));
 

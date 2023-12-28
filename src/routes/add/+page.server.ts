@@ -38,7 +38,7 @@ export const actions = {
             .then((response) => {
                 return response[0].statusCode == 202
             })
-            .catch((error) => {
+            .catch(() => {
                 return false
             })
 
@@ -79,7 +79,7 @@ async function send_message(phoneNbr: number) {
         .then(res => {
             return res.status === 200
         })
-        .catch(error => {
+        .catch(() => {
             return false
         });
 

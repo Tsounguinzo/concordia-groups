@@ -43,6 +43,7 @@ export async function getCourseIdByTitle(subject: string, catalog: number): Prom
 
         return courseId || null;
     } catch (error) {
+        // @ts-ignore
         console.error("Error scraping the website:", error.message);
         return null;
     }

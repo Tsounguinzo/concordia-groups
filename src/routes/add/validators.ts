@@ -40,8 +40,6 @@ export async function validateCourseName(courseName: string, element: any): Prom
 
         if (doesCourseExist(subject, catalog)) {
             element.setCustomValidity('This course group already exits.');
-       /* } else if (!(await isCourseValid(subject, catalog))) {
-            element.setCustomValidity('The specified course does not exist.');*/
         } else {
             element.setCustomValidity('')
         }
@@ -50,23 +48,6 @@ export async function validateCourseName(courseName: string, element: any): Prom
         element.setCustomValidity('')
     }
 
-}
-
-
-async function isCourseValid(subject: string, catalog: string) {
-    try {
-        const response = await fetch(`/api/course?course=${subject}/${catalog}`);
-
-        if (response.status === 202) {
-            return true;
-        } else {
-            console.error(`Error fetching course: Status ${response.status}`);
-            return false;
-        }
-    } catch (err) {
-        console.error('Error fetching course:', err);
-        return false;
-    }
 }
 
 function doesCourseExist(subject: string, catalog: string) {
