@@ -1,6 +1,5 @@
 <script lang="ts">
     import {siteConfig} from "$lib/config/site";
-
     export let title: string = siteConfig.name;
 
 </script>

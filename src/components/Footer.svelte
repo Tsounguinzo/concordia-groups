@@ -5,7 +5,7 @@
             </div>
             <div class="pl-3 duration-700 group-hover:translate-y-2">
                 <div><span class="font-medium"> Source code available </span></div>
-                <div class="text-gray-500 break-words text-sm line-clamp-2">by Beaudelaire T.N.</div>
+                <div class="text-gray-500 break-words text-sm line-clamp-2">By Beaudelaire T.N.</div>
             </div>
         </a>
 </div>
