@@ -32,9 +32,7 @@ export async function validateCourseName(courseName: string, element: any): Prom
         element.setCustomValidity('Must be 4 letters followed by 3 or 4 numbers .');
     } else if (/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/.test(courseName)) {
 
-
         const match = courseName.match(/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/);
-
         // @ts-ignore
         const subject = match[1];
         // @ts-ignore
@@ -42,8 +40,8 @@ export async function validateCourseName(courseName: string, element: any): Prom
 
         if (doesCourseExist(subject, catalog)) {
             element.setCustomValidity('This course group already exits.');
-        } else if (!(await isCourseValid(subject, catalog))) {
-            element.setCustomValidity('The specified course does not exist.');
+       /* } else if (!(await isCourseValid(subject, catalog))) {
+            element.setCustomValidity('The specified course does not exist.');*/
         } else {
             element.setCustomValidity('')
         }
