@@ -15,9 +15,21 @@ export function validateWhatsappLink(element: any): void {
     if (!element) return;
 
     if (element.validity.valueMissing) {
-        element.setCustomValidity('Please enter the Whatsapp group link.');
+        element.setCustomValidity('Please enter the link to your Whatsapp group.');
     } else if (element.validity.patternMismatch) {
         element.setCustomValidity('Ensure the link is a valid Whatsapp URL.');
+    } else {
+        element.setCustomValidity('');
+    }
+}
+
+export function validateDiscordLink(element: any): void {
+    if (!element) return;
+
+    if (element.validity.valueMissing) {
+        element.setCustomValidity('Please enter the link to your Discord server.');
+    } else if (element.validity.patternMismatch) {
+        element.setCustomValidity('Ensure the link is a valid Discord URL.');
     } else {
         element.setCustomValidity('');
     }
