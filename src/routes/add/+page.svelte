@@ -158,7 +158,7 @@
                                 <div class="flex flex-row gap-3 p-2">
                                     <input type="radio" name="platform" value="whatsapp" id="whatsapp" class="hidden"
                                            checked required bind:group={platformChosen}/>
-                                    <label class="{platformChosen === 'whatsapp' ? 'border-[#25d366] text-[#25d366]' : 'hover:text-[#25d366] hover:border-[#25d366]'}  w-1/3 text-gray-100 flex flex-col items-stretch h-24 justify-between p-3 border-gray-800 border-2 rounded-md transition-colors duration-300 ease-in-out overflow-hidden cursor-pointer"
+                                    <label class="{platformChosen === 'whatsapp' ? 'border-[#25d366] text-[#25d366]' : 'border-gray-800 text-gray-100'} hover:text-[#25d366] hover:border-[#25d366] w-1/3 flex flex-col items-stretch h-24 justify-between p-3 border-2 rounded-md transition-colors duration-300 ease-in-out overflow-hidden cursor-pointer"
                                            for="whatsapp">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18"
                                              height="18" fill="currentColor" viewBox="0 0 24 24">
@@ -171,7 +171,7 @@
 
                                     <input type="radio" name="platform" value="discord" id="discord" class="hidden"
                                            required bind:group={platformChosen}/>
-                                    <label class="{platformChosen === 'discord' ? 'border-[#7289da] text-[#7289da]' : 'hover:text-[#7289da] hover:border-[#7289da]'} w-1/3 text-gray-100 flex flex-col items-stretch h-24 justify-between p-3 border-gray-800 border-2 rounded-md transition-colors duration-300 ease-in-out overflow-hidden cursor-pointer"
+                                    <label class="{platformChosen === 'discord' ? 'border-[#7289da] text-[#7289da]' : 'border-gray-800 text-gray-100'} hover:text-[#7289da] hover:border-[#7289da] w-1/3 flex flex-col items-stretch h-24 justify-between p-3 border-2 rounded-md transition-colors duration-300 ease-in-out overflow-hidden cursor-pointer"
                                            for="discord">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18"
                                              height="18" fill="currentColor" viewBox="0 0 24 24">
@@ -186,15 +186,15 @@
                                            bind:group={platformChosen}/>
                                     <label class="w-1/3 group bg-gradient-to-bl from-[#25d366] to-[#7289da] rounded-md cursor-pointer"
                                            for="both">
-                                        <div class="{platformChosen === 'both' ? 'border-transparent' : 'group-hover:border-transparent'} text-gray-100 border-gray-800 border-2 rounded-md overflow-hidden transition-colors duration-300 ease-in-out">
+                                        <div class="{platformChosen === 'both' ? 'border-transparent' : 'border-gray-800'} group-hover:border-transparent text-gray-100 border-2 rounded-md overflow-hidden transition-colors duration-300 ease-in-out">
                                             <div class="flex flex-col items-stretch h-[93px] justify-between p-3 bg-primary">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                      width="18"
-                                                     class="{platformChosen === 'both' ? 'text-[#50b7a3]' : 'group-hover:text-[#50b7a3]'} transition-colors duration-300 ease-in-out">
+                                                     class="{platformChosen === 'both' ? 'text-[#50b7a3]' : ''} group-hover:text-[#50b7a3] transition-colors duration-300 ease-in-out">
                                                     <path d="M7.10508 8.78991C7.45179 10.0635 8.61653 11 10 11H14C16.4703 11 18.5222 12.7915 18.9274 15.1461C20.1303 15.5367 21 16.6668 21 18C21 19.6569 19.6569 21 18 21C16.3431 21 15 19.6569 15 18C15 16.7334 15.7849 15.6501 16.8949 15.2101C16.5482 13.9365 15.3835 13 14 13H10C8.87439 13 7.83566 12.6281 7 12.0004V15.1707C8.16519 15.5825 9 16.6938 9 18C9 19.6569 7.65685 21 6 21C4.34315 21 3 19.6569 3 18C3 16.6938 3.83481 15.5825 5 15.1707V8.82929C3.83481 8.41746 3 7.30622 3 6C3 4.34315 4.34315 3 6 3C7.65685 3 9 4.34315 9 6C9 7.26661 8.21506 8.34988 7.10508 8.78991ZM6 7C6.55228 7 7 6.55228 7 6C7 5.44772 6.55228 5 6 5C5.44772 5 5 5.44772 5 6C5 6.55228 5.44772 7 6 7ZM6 19C6.55228 19 7 18.5523 7 18C7 17.4477 6.55228 17 6 17C5.44772 17 5 17.4477 5 18C5 18.5523 5.44772 19 6 19ZM18 19C18.5523 19 19 18.5523 19 18C19 17.4477 18.5523 17 18 17C17.4477 17 17 17.4477 17 18C17 18.5523 17.4477 19 18 19Z"
                                                           fill="currentColor"></path>
                                                 </svg>
-                                                <p class="{platformChosen === 'both' ? 'text-[#6898ca]' : 'group-hover:text-[#6898ca]'} transition-colors duration-300 ease-in-out">
+                                                <p class="{platformChosen === 'both' ? 'text-[#6898ca]' : ''} group-hover:text-[#6898ca] transition-colors duration-300 ease-in-out">
                                                     Both
                                                 </p>
                                             </div>
