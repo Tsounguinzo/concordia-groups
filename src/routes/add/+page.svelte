@@ -86,7 +86,7 @@
       method="POST" name="form-group" on:submit={() => window.localStorage.setItem('popupVisible', 'true')}>
 
     <!------------------------Header start----------------------------->
-    <div class="flex w-full justify-between py-4 px-4 border-b border-b-white">
+    <div class="flex w-full justify-between py-4 px-4 border-b-4 border-b-gray-800 ">
         <a class="flex items-center group" href="/">
             <svg class="duration-500 group-hover:-translate-x-2" fill="none" height="24" viewBox="0 0 24 24" width="24"
                  xmlns="http://www.w3.org/2000/svg">
@@ -213,27 +213,27 @@
                                     placeholder="e.g MATH 205"
                             />
 
-                            {#if platformChosen === 'both' || platformChosen === 'whatsapp'}
                                 <CustomInput
                                         bind:value={courseWhatsappLink}
+                                        show={platformChosen === 'both' || platformChosen === 'whatsapp'}
+                                        required={platformChosen === 'both' || platformChosen === 'whatsapp'}
                                         label="Whatsapp link"
                                         name="whatsappGroupLink"
                                         onInvalidCallback={validateWhatsappLinkWrapper}
                                         pattern="^https://chat.whatsapp.com/.*"
                                         placeholder="link to your whatsapp group"
                                 />
-                            {/if}
 
-                            {#if platformChosen === 'both' || platformChosen === 'discord'}
                                 <CustomInput
                                         bind:value={courseDiscordLink}
+                                        show={platformChosen === 'both' || platformChosen === 'discord'}
+                                        required={platformChosen === 'both' || platformChosen === 'discord'}
                                         label="Discord link"
                                         name="discordGroupLink"
                                         onInvalidCallback={validateDiscordLinkWrapper}
                                         pattern="^https://discord.gg/.*"
                                         placeholder="link to your Discord server"
                                 />
-                            {/if}
 
 
                             <div class="mb-6">
@@ -242,7 +242,7 @@
                                 </div>
                                 <div class="relative">
                                 <textarea
-                                        class="w-full text-sm overflow-visible rounded-lg focus:border-[#3898ec] outline-none border-2 bg-transparent px-3 py-2 h-32 resize-none"
+                                        class="w-full border-gray-800 text-sm overflow-visible rounded-lg focus:border-[#3898ec] outline-none border-2 bg-transparent px-3 py-2 h-32 resize-none"
                                         name="comment"
                                         placeholder="Any thing you want to point out?"
                                         rows="8"
@@ -252,7 +252,7 @@
 
                             <CustomInput
                                     bind:value={followUpNumber}
-                                    label="Whatsapp number (international format)"
+                                    label="Follow-Up WhatsApp Number (+ country Code)"
                                     name="followupNumber"
                                     onInvalidCallback={validatePhoneNumberWrapper}
                                     pattern={"^((\\+)?[1-9]{1,3})?([\\-\\s\\.])?((\\(\\d{1,4}\\))|\\d{1,4})(([\\-\\s\\.])?[0-9]{1,12}){1,2}$"}
@@ -263,9 +263,8 @@
                                 <div class="mb-1.5 flex items-center">Acceptance Criteria</div>
                                 <div class="flex flex-col gap-4">
                                     <div class="rounded-lg text-gray-500">
-                                        You must follow the specification for the whatsapp group as shown in the
-                                        preview,
-                                        <a class="text-blue-500 animate-pulse" download="group-icon"
+                                        Ensure your WhatsApp and/or Discord group uses the exact icon, name, and description provided in the preview.
+                                        <a class="text-blue-700 animate-pulse" download="group-icon"
                                            href="/concordia-logo.png">click here</a> to download the group icon
                                     </div>
                                 </div>
@@ -279,7 +278,7 @@
 
 
         <!-- Course preview panel-->
-        <div class="flex w-full h-full justify-center pt-4 md:w-1/2 md:border-l {panelSelected === 'group-info' ? 'max-md:hidden' : ''}">
+        <div class="flex w-full h-full justify-center pt-4 md:w-1/2 md:border-l-4 md:border-l-gray-800 {panelSelected === 'group-info' ? 'max-md:hidden' : ''}">
             <div class="h-full grow overflow-hidden">
                 <div class="flex h-full flex-col px-2 pt-4">
 
@@ -302,11 +301,7 @@
                                     <div class="absolute left-0 top-0 h-full w-full">
                                         <div class="flex h-full flex-col items-center justify-center">
                                             <div class="relative">
-                                                <div class="mb-3 h-[82px] w-[82px]">
-                                                    <div class="relative flex h-full items-center justify-center rounded-full bg-white text-black">
-                                                        <img alt="concordia logo" src="/concordia-logo.png">
-                                                    </div>
-                                                </div>
+                                                <img alt="concordia logo" src="/concordia-logo.png" class="h-[82px] w-[82px]">
                                             </div>
                                             <div class="flex flex-col max-w-md items-center gap-0 p-2 w-full">
                                                 {#if courseName}

@@ -37,7 +37,7 @@
     <input
             id={name}
             placeholder={placeholder}
-            class={`${baseClass} ${isValid ? '' : 'focus:' + invalidClass} ${isValid ? validClass : value ? invalidClass : ''}`}
+            class={`${baseClass} ${isValid ? '' : 'focus:' + invalidClass} ${isValid ? validClass : value ? invalidClass : 'border-gray-800'}`}
             name={name}
             pattern={pattern}
             bind:value={value}
