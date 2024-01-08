@@ -1,5 +1,4 @@
- // @ts-ignore
-  export function typing(node, callback: (typing: boolean) => void) {
+  export function typing(node: HTMLInputElement, callback: (typing: boolean) => void) {
     let typingTimer:NodeJS.Timeout;
 
     node.addEventListener('keydown', handleKeyDown);
