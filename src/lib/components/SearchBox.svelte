@@ -8,9 +8,9 @@
         <input bind:value={$searchQuery.search}
                role="searchbox"
                aria-label="Search field"
-               class="self-center text-2xl text-center bg-transparent sm:text-4xl md:text-5xl lg:text-7xl focus:outline-none animate-pulse"
-               placeholder="Search for a course..."
-               autofocus
+               class="caret-blue-500 font-medium self-center text-3xl text-center bg-transparent sm:text-4xl md:text-5xl lg:text-7xl focus:outline-none animate-pulse"
+               placeholder="Search for a course"
+               autofocus={true}
         >
     </form>
 </div>

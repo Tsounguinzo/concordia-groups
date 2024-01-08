@@ -8,20 +8,25 @@
     import Grid from "./Grid.svelte";
     import {createSearchStore, searchHandler} from "$lib/utiles";
     import {onDestroy} from "svelte";
-    import type {Course} from "$lib/types";
+    import type {Course, SearchStoreModel} from "$lib/types";
     import Footer from "./layout/Footer.svelte";
     import CourseElement from "./CourseElement.svelte";
-    import type {SearchStoreModel} from "$lib/types";
+    import FilterBox from "$lib/components/common/FilterBox.svelte";
+    import Filters from "$lib/components/layout/Filters.svelte";
 
     export let courses;
+    let currFilter = 'NONE';
+
+    const filters = ["NONE", "ENGR", "ECON", "PHYS", "MATH", "MIAE", "CHEM", "COMP", "SOEN", "ELEC", "COEN", "MAST", "ENCS", "AERO", "MECH", "INDU"]
 
     // Copy the provided courses data for searching functionality.
     const searchCourses: Course[] = courses.map((course: Course) => ({...course}));
 
     const searchStore = createSearchStore(searchCourses);
+    $: searchStore.applyFilter(currFilter);
 
     //When the search model changes, the handler updates the view.
-    const unsubscribe = searchStore.subscribe((model: SearchStoreModel<Course>) => searchHandler(model));
+    const unsubscribe = searchStore.subscribe((model: SearchStoreModel<Course>) => searchHandler(model, currFilter));
 
     onDestroy(() => {
         unsubscribe();
@@ -38,6 +43,12 @@
     {/if}
 
     <SearchBox searchQuery={searchStore}/>
+
+    <Filters>
+        {#each filters as filter}
+            <FilterBox currentValue={currFilter} value={filter} on:click={() => currFilter=filter }/>
+        {/each}
+    </Filters>
 
     {#if $searchStore.filtered.length === 0}
         <NoContent/>

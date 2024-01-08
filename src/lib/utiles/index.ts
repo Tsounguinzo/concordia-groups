@@ -90,19 +90,34 @@ export const createSearchStore = <T extends Record<PropertyKey, any>>(
         subscribe,
         set,
         update,
+        applyFilter: (filter: string) => {
+            update(store => {
+                // Call searchHandler here to apply the filter
+                searchHandler(store, filter);
+                return store;
+            });
+        },
     }
 }
 
 export const searchHandler = <T extends Record<PropertyKey, any>>(
-    store: SearchStoreModel<T>,
-) => {
-    const maxResults = 20;
+    store: SearchStoreModel<T>, filter: string) => {
 
     const searchQuery = store.search.toLowerCase().trim();
+    let maxResults;
+    let data;
 
-    // If search is empty, display first twenty courses.
+    if(filter === 'NONE') {
+        maxResults = 20
+        data = store.data
+    } else {
+        maxResults = 1000
+        data = store.data.filter(course => course.subject.toUpperCase().includes(filter))
+    }
+
+    // If search is empty, display the required number courses.
     if (!searchQuery) {
-        store.filtered = store.data.slice(0, maxResults);
+        store.filtered = data.slice(0, maxResults);
         return;
     }
 
@@ -110,7 +125,7 @@ export const searchHandler = <T extends Record<PropertyKey, any>>(
     let minScore = 1; // Minimum score in rankedResults.
 
     // Rank courses based on relevance to the search query.
-    for (const item of store.data) {
+    for (const item of data) {
         let score = 0;
         let courseName = `${item.subject}${item.catalog}`.toLowerCase();
         let courseTitle = `${item.title}`.toLowerCase();
@@ -131,10 +146,10 @@ export const searchHandler = <T extends Record<PropertyKey, any>>(
             }
 
             // Ensure rankedResults doesn't grow beyond 20 items.
-            if (rankedResults.length > 20) {
+            if (rankedResults.length > maxResults) {
                 rankedResults.pop();
                 minScore = rankedResults[rankedResults.length - 1].score; // Update the minimum score.
-            } else if (rankedResults.length === 20) {
+            } else if (rankedResults.length === maxResults) {
                 minScore = rankedResults[rankedResults.length - 1].score;
             }
         }
