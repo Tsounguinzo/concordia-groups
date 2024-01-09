@@ -14,9 +14,6 @@
     export let baseClass = "w-full resize-none overflow-y-auto rounded-lg px-3 py-2 text-sm outline-none border-2 bg-transparent";
     export let validClass: string = "border-green-400";
     export let invalidClass: string = "border-red-700";
-    export let onBlurCallback = () => {};
-    export let onInvalidCallback = () => {};
-    export let onFocusCallback = () => {};
 
     $: isValid = new RegExp(pattern).test(value);
 
@@ -44,9 +41,9 @@
             required={required ? 'required' : ''}
             class:focus:border-yellow-300={isUserTyping === true}
             use:typing={updateTypingStatus}
-            on:blur={onBlurCallback}
-            on:invalid={onInvalidCallback}
-            on:focus={onFocusCallback}
+            on:blur
+            on:invalid
+            on:focus
     >
 </div>
 

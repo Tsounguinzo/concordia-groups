@@ -2,7 +2,7 @@
     import {onMount} from "svelte";
     import {validateCourseName, validateDiscordLink, validatePhoneNumber, validateWhatsappLink} from "$lib/validators";
 
-    import CustomInput from "$lib/components/CustomInput.svelte";
+    import Input from "$lib/components/Input.svelte";
     import SubmissionModel from "$lib/components/common/SubmissionModel.svelte";
     import Copy from "$lib/components/common/Copy.svelte";
 
@@ -195,34 +195,34 @@
                         </div>
                     </div>
 
-                    <CustomInput
+                    <Input
                             bind:value={courseName}
                             label="Course Name"
                             name="courseName"
-                            onFocusCallback={validateCourseNameWrapper}
-                            onBlurCallback={validateCourseNameWrapper}
+                            on:focus={validateCourseNameWrapper}
+                            on:blur={validateCourseNameWrapper}
                             pattern={"^\\s*([a-zA-Z]{4})[\\s\\-]*(\\d{3,4})\\s*$"}
                             placeholder="e.g MATH 205"
                     />
 
-                    <CustomInput
+                    <Input
                             bind:value={courseWhatsappLink}
                             show={platformChosen === 'both' || platformChosen === 'whatsapp'}
                             required={platformChosen === 'both' || platformChosen === 'whatsapp'}
                             label="Whatsapp link"
                             name="whatsappGroupLink"
-                            onInvalidCallback={validateWhatsappLinkWrapper}
+                            on:invalid={validateWhatsappLinkWrapper}
                             pattern="^https://chat.whatsapp.com/.*"
                             placeholder="link to your whatsapp group"
                     />
 
-                    <CustomInput
+                    <Input
                             bind:value={courseDiscordLink}
                             show={platformChosen === 'both' || platformChosen === 'discord'}
                             required={platformChosen === 'both' || platformChosen === 'discord'}
                             label="Discord link"
                             name="discordGroupLink"
-                            onInvalidCallback={validateDiscordLinkWrapper}
+                            on:invalid={validateDiscordLinkWrapper}
                             pattern="^https://discord.gg/.*"
                             placeholder="link to your Discord server"
                     />
@@ -242,11 +242,11 @@
                         </div>
                     </div>
 
-                    <CustomInput
+                    <Input
                             bind:value={followUpNumber}
                             label="Follow-Up WhatsApp Number (+ country Code)"
                             name="followupNumber"
-                            onInvalidCallback={validatePhoneNumberWrapper}
+                            on:invalid={validatePhoneNumberWrapper}
                             pattern={"^((\\+)?[1-9]{1,3})?([\\-\\s\\.])?((\\(\\d{1,4}\\))|\\d{1,4})(([\\-\\s\\.])?[0-9]{1,12}){1,2}$"}
                             placeholder="e.g +1 438 589 4367"
                     />
