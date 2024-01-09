@@ -7,11 +7,12 @@ export const actions = {
         const data = await request.formData();
 
         const courseName = data.get('courseName');
-        const courseLink = data.get('whatsappGroupLink');
+        const courseWALink = data.get('whatsappGroupLink');
+        const courseDCLink = data.get('discordGroupLink');
         const comment = data.get('comment');
         const whatsappNumber = data.get('followupNumber');
 
-        const nameParts = courseName.match(/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/)
+        const nameParts = courseName?.match(/^\s*([a-zA-Z]{4})[\s\-]*(\d{3,4})\s*$/)
         const formattedName = `${nameParts[1].toUpperCase()} ${nameParts[2].toUpperCase()}`
 
         const msg = {
@@ -21,7 +22,7 @@ export const actions = {
             dynamic_template_data: {
                 subject: "Request to add a group from " + whatsappNumber,
                 courseName: formattedName,
-                courseLink: courseLink,
+                courseLink: `WA: ${courseWALink} DC: ${courseDCLink}`,
                 comment: comment ? comment : 'NONE'
             }
         }
