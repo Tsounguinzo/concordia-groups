@@ -63,6 +63,6 @@ export async function validateCourseName(courseName: string, element: any): Prom
 }
 
 function doesCourseExist(subject: string, catalog: string) {
-    const course = `${subject.toUpperCase()}_${catalog}_UGRD`
+    const course = `${subject.toUpperCase()}_${catalog}`
     return course in coursesAndThierLinks;
 }

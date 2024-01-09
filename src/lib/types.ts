@@ -9,6 +9,7 @@ export type Course = {
         crosslisted: string;
         description: string;
         whatsappLink: string;
+        discordLink: string;
     };
 
 export interface SearchStoreModel<T extends Record<PropertyKey, any>> {

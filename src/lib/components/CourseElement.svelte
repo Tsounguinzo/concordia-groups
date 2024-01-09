@@ -22,15 +22,15 @@
     <div class="transition-all rounded-lg group col-span-12 sm:col-span-6 md:col-span-4">
         <a class="flex flex-col w-full h-full p-3 text-center text-gray-100" href="/"
            on:click|preventDefault={() => {
-                   linkPopUpModelData.set({courseName: `${course.subject} ${course.catalog}`, courseWhatsappURL: course.whatsappLink})
+                   linkPopUpModelData.set({courseName: `${course.subject} ${course.catalog}`, courseWhatsappURL: course.whatsappLink, courseDiscordURL: course.discordLink})
                    isLinkPopUpModelOpen.set(true)
                }}>
             <div class="self-center w-40 h-20 overflow-hidden transition duration-300 transform rounded-lg group-hover:-translate-y-3">
                 <img
+                        loading="lazy"
                         class="absolute object-cover w-full h-full rounded-lg bg-gradient-to-t from-primary"
                         src="https://cdn.sanity.io/images/udzdriea/production/7cf162664abfd9a1e0886bcbef2d475398c25d5a-960x600.jpg?w=200"
                         alt={course.title}
-                        loading="lazy"
                 />
                 <div class="absolute inset-0 z-10 w-full h-full bg-gradient-to-t from-black"></div>
             </div>

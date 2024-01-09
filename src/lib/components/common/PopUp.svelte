@@ -92,7 +92,7 @@
                     <span itemscope>
                         <a
                                 itemprop="source"
-                                href="https://discord.gg/na8tcjBpEp"
+                                href={$linkPopUpModelData.courseDiscordURL}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="text-gray-100 flex flex-col items-stretch h-24 sm:h-28 justify-between p-3 border-gray-800 border-2 rounded-md hover:text-white hover:border-gray-500 transition-colors duration-300 ease-in-out group overflow-hidden"

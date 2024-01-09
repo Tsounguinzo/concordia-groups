@@ -43,8 +43,8 @@ export const GET = async () => {
 
 // Fetch course and description
 const fetchCourseData = async (key: string, headers: Record<string, string>) => {
-    const [subject, catalog, career] = key.split('_');
-    const courseURL = `https://opendata.concordia.ca/API/v1/course/catalog/filter/${subject}/${catalog}/${career}`;
+    const [subject, catalog] = key.split('_');
+    const courseURL = `https://opendata.concordia.ca/API/v1/course/catalog/filter/${subject}/${catalog}/UGRD`;
     const course = await fetch(courseURL, { headers }).then(res => res.json());
 
     // Exit early if no course data found.
@@ -56,6 +56,7 @@ const fetchCourseData = async (key: string, headers: Record<string, string>) => 
     return {
         ...course[0],
         description: description[0]?.description,
-        whatsappLink: coursesAndThierLinks[key as keyof typeof coursesAndThierLinks]
+        whatsappLink: coursesAndThierLinks[key as keyof typeof coursesAndThierLinks],
+        discordLink: "https://discord.gg/na8tcjBpEp"
     };
 };
