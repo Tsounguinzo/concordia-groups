@@ -27,7 +27,7 @@
                    isLinkPopUpModelOpen.set(true)
                }}>
             <div class="self-center w-40 h-20 overflow-hidden transition duration-300 transform rounded-lg group-hover:-translate-y-3">
-                <img loading="lazy" src="/course-img.jpg" alt={course.title} class="absolute object-cover w-full h-full rounded-lg bg-gradient-to-t from-primary"/>
+                <img src="/course-img.jpg" alt={course.title} class="absolute object-cover w-full h-full rounded-lg bg-gradient-to-t from-primary"/>
                 <div class="absolute inset-0 z-10 w-full h-full bg-gradient-to-t from-black"></div>
             </div>
             <h6 class="mb-2 text-lg duration-700 group-hover:-translate-y-2">{course.subject} {course.catalog} - {course.title}</h6>

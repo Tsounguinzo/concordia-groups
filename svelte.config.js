@@ -8,7 +8,13 @@ const config = {
 	preprocess: vitePreprocess(),
 
 	kit: {
-		adapter: adapter()
+		adapter: adapter({
+			precompress: true,
+		}),
+		static: {
+			// cache everything in `static` for 1 year
+			cache: 31536000
+		}
 	}
 };
 
