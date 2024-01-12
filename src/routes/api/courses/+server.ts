@@ -36,9 +36,7 @@ export const GET = async () => {
         console.log(`${coursesData.length} Courses loaded in ${(after - before) / 1000} seconds.`);
     }
 
-	return json({
-		courses: coursesData
-	});
+	return json(coursesData);
 };
 
 // Fetch course and description

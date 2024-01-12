@@ -15,10 +15,10 @@
          fetch('/api/courses').then((res) => res.json()).then((data) => {
                const coursesData = {
                     version: STORAGE_VERSION,
-                    courses: data.courses,
+                    courses: data,
                    };
                 localStorage.setItem(COURSES_STORAGE_KEY, JSON.stringify(coursesData));
-                return data;
+                return Promise.resolve({courses: data});
          });
     })
 </script>
