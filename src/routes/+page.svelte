@@ -5,9 +5,21 @@
     import Loading from "$lib/components/common/Loading.svelte";
 
     let courses = Promise.resolve({courses: []});
+    const COURSES_STORAGE_KEY = 'coursesData';
+    const STORAGE_VERSION = 1;
 
     onMount(async () => {
-         courses = fetch('/api/courses').then((res) => res.json());
+         const storedData = JSON.parse(localStorage.getItem(COURSES_STORAGE_KEY));
+         courses = (storedData && storedData.version === STORAGE_VERSION) ? 
+         Promise.resolve({courses: storedData.courses}) : 
+         fetch('/api/courses').then((res) => res.json()).then((data) => {
+               const coursesData = {
+                    version: STORAGE_VERSION,
+                    courses: data.courses,
+                   };
+                localStorage.setItem(COURSES_STORAGE_KEY, JSON.stringify(coursesData));
+                return data;
+         });
     })
 </script>
 
