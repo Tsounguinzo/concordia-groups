@@ -9,9 +9,9 @@
     const STORAGE_VERSION = 1;
 
     onMount(async () => {
-         const storedData = JSON.parse(localStorage.getItem(COURSES_STORAGE_KEY));
-         courses = (storedData && storedData.version === STORAGE_VERSION) ? 
-         Promise.resolve({courses: storedData.courses}) : 
+         const storedData = localStorage.getItem(COURSES_STORAGE_KEY);
+         courses = (storedData && JSON.parse(storedData).version === STORAGE_VERSION) ?
+         Promise.resolve({courses: JSON.parse(storedData).courses}) :
          fetch('/api/courses').then((res) => res.json()).then((data) => {
                const coursesData = {
                     version: STORAGE_VERSION,
