@@ -3,21 +3,17 @@
     import Error from "$lib/components/layout/Error.svelte";
     import {onMount} from "svelte";
     import Loading from "$lib/components/common/Loading.svelte";
+    import {COURSES_STORAGE_KEY, NUMBER_OF_COURSES} from "$lib/constants";
 
     let courses = Promise.resolve({courses: []});
-    const COURSES_STORAGE_KEY = 'coursesData';
-    const STORAGE_VERSION = 1;
 
     onMount(async () => {
+        localStorage.removeItem('coursesData');
          const storedData = localStorage.getItem(COURSES_STORAGE_KEY);
-         courses = (storedData && JSON.parse(storedData).version === STORAGE_VERSION) ?
-         Promise.resolve({courses: JSON.parse(storedData).courses}) :
+         courses = (storedData && JSON.parse(storedData).length === NUMBER_OF_COURSES) ?
+         Promise.resolve({courses: JSON.parse(storedData)}) :
          fetch('/api/courses').then((res) => res.json()).then((data) => {
-               const coursesData = {
-                    version: STORAGE_VERSION,
-                    courses: data,
-                   };
-                localStorage.setItem(COURSES_STORAGE_KEY, JSON.stringify(coursesData));
+                localStorage.setItem(COURSES_STORAGE_KEY, JSON.stringify(data));
                 return Promise.resolve({courses: data});
          });
     })

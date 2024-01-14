@@ -122,6 +122,8 @@ export const coursesAndThierLinks = {
     'ELEC_367': 'https://chat.whatsapp.com/FfIBnKuVtLrCImGJcn3M3M',
     'MATH_208': 'https://chat.whatsapp.com/I0swNXm7loR1Z16rwCW7Io',
     'MATH_209': 'https://chat.whatsapp.com/BduCUraIlcX6OvP2kJmyYg',
+    'BIOL_203': 'https://chat.whatsapp.com/Cq9TaYGwSiQLDtoHYaquFJ',
+    'EDUC_270': 'https://chat.whatsapp.com/IaRNGNeOHVsDEL3YNtbrcX',
 };
 
 export const subjectBaseUrls: { [key: string]: string } = {

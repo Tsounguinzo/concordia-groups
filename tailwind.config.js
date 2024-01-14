@@ -7,7 +7,7 @@ export default {
     },
     extend: {
       backgroundColor: {
-        'primary': 'rgb(7, 7, 7)',
+        'primary': 'rgb(0,0,0)',
       }
     },
   },
