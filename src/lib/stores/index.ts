@@ -129,6 +129,7 @@ export const coursesAndThierLinks = {
     'COMP_472': 'https://chat.whatsapp.com/JSvvrBqH6tsCO0KlbCgMYE',
     'COMP_474': 'https://chat.whatsapp.com/BzGJW6noh9bD3xCKMEhXw9',
     'ENCS_393': 'https://chat.whatsapp.com/FEQjviRISgLLEAiTWAXAqu',
+    'THEO_202': 'https://chat.whatsapp.com/EGZcGDLYIw7DIAYwYXEjK1',
 };
 
 export const subjectBaseUrls: { [key: string]: string } = {
@@ -149,6 +150,7 @@ export const subjectBaseUrls: { [key: string]: string } = {
     'EDUC': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-090-department-of-education/education-courses.html',
     'MARK': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-61-john-molson-school-of-business/section-61-100-department-of-marketing/marketing-courses.html',
     'RELI': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-270-department-of-religions-and-cultures/religions-and-cultures-courses.html',
+    'THEO': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-330-department-of-theological-studies/theological-studies-courses.html',
 };
 
 export const config = {
