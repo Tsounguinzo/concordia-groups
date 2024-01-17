@@ -124,6 +124,11 @@ export const coursesAndThierLinks = {
     'MATH_209': 'https://chat.whatsapp.com/BduCUraIlcX6OvP2kJmyYg',
     'BIOL_203': 'https://chat.whatsapp.com/Cq9TaYGwSiQLDtoHYaquFJ',
     'EDUC_270': 'https://chat.whatsapp.com/IaRNGNeOHVsDEL3YNtbrcX',
+    'MARK_201': 'https://chat.whatsapp.com/Io13bfKARNHKoNJ8Xvo0IN',
+    'RELI_216': 'https://chat.whatsapp.com/DHhKZfse4BjLPFtmbAbMyh',
+    'COMP_472': 'https://chat.whatsapp.com/JSvvrBqH6tsCO0KlbCgMYE',
+    'COMP_474': 'https://chat.whatsapp.com/BzGJW6noh9bD3xCKMEhXw9',
+    'ENCS_393': 'https://chat.whatsapp.com/FEQjviRISgLLEAiTWAXAqu',
 };
 
 export const subjectBaseUrls: { [key: string]: string } = {
