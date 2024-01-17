@@ -146,6 +146,9 @@ export const subjectBaseUrls: { [key: string]: string } = {
     'CHEM': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-050-department-of-chemistry-and-biochemistry/chemistry-and-biochemistry-courses.html',
     'COMP': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-70-department-of-computer-science-and-software-engineering/section-71-70-10-computer-science-and-software-engineering-courses.html',
     'SOEN': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-70-department-of-computer-science-and-software-engineering/section-71-70-10-computer-science-and-software-engineering-courses.html',
+    'EDUC': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-090-department-of-education/education-courses.html',
+    'MARK': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-61-john-molson-school-of-business/section-61-100-department-of-marketing/marketing-courses.html',
+    'RELI': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-270-department-of-religions-and-cultures/religions-and-cultures-courses.html',
 };
 
 export const config = {
