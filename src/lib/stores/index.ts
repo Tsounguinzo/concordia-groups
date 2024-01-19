@@ -1,6 +1,7 @@
 import {writable} from "svelte/store";
 
 export const coursesAndThierLinks = {
+    'ITAL_200': 'https://chat.whatsapp.com/Euy4KEbubXLHFTFWEQPFQj',
     'ECON_201': 'https://chat.whatsapp.com/DNQVq7VCNoMBUwCIh9FKEL',
     'ECON_203': 'https://chat.whatsapp.com/BTeESFcPY3bEPsvCBfOfb5',
     'PHYS_284': 'https://chat.whatsapp.com/C2kieoBaiDnDyAYwZYksoe',
@@ -130,6 +131,21 @@ export const coursesAndThierLinks = {
     'COMP_474': 'https://chat.whatsapp.com/BzGJW6noh9bD3xCKMEhXw9',
     'ENCS_393': 'https://chat.whatsapp.com/FEQjviRISgLLEAiTWAXAqu',
     'THEO_202': 'https://chat.whatsapp.com/EGZcGDLYIw7DIAYwYXEjK1',
+    'PHIL_201': 'https://chat.whatsapp.com/JPVDRJyqji70nZgtbyDTJ9',
+    'PHIL_210': 'https://chat.whatsapp.com/D5kb2MVYYrvJWFTY8hBR2K',
+    'PHIL_214': 'https://chat.whatsapp.com/J1FmoYE50ca7TVqrx9Mnr9',
+    'PHIL_220': 'https://chat.whatsapp.com/DR1IjNnNi0GJeswZiF7HpE',
+    'PHIL_232': 'https://chat.whatsapp.com/KfyJlVG294W017Mn2kO0T9',
+    'PHIL_235': 'https://chat.whatsapp.com/IzQVU1Sb84G8rGCyVvq9V5',
+    'PHIL_261': 'https://chat.whatsapp.com/DEkwatcUAP3Bg5QFwZoGki',
+    'PHIL_265': 'https://chat.whatsapp.com/EevDkOEfqkE1jx4mvr8fRn',
+    'PHIL_266': 'https://chat.whatsapp.com/EG5Dl5yHzsN7QErldyrUiD',
+    'PHIL_280': 'https://chat.whatsapp.com/JrOPJtSFsaHDIU6Jxtd3b6',
+    'PHIL_316': 'https://chat.whatsapp.com/LHypde0FkcD8PgmQQsENhq',
+    'PHIL_361': 'https://chat.whatsapp.com/JNQKbM3BWWY9C9X2buvuPn',
+    'PHIL_362': 'https://chat.whatsapp.com/HS4o1R4Z7PFEdAKIH1QNx2',
+    'PHIL_377': 'https://chat.whatsapp.com/GpNildIZqxSG2BnhjIF5Hl',
+    'PHIL_387': 'https://chat.whatsapp.com/EevDkOEfqkE1jx4mvr8fRn',
 };
 
 export const subjectBaseUrls: { [key: string]: string } = {
@@ -151,6 +167,8 @@ export const subjectBaseUrls: { [key: string]: string } = {
     'MARK': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-61-john-molson-school-of-business/section-61-100-department-of-marketing/marketing-courses.html',
     'RELI': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-270-department-of-religions-and-cultures/religions-and-cultures-courses.html',
     'THEO': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-330-department-of-theological-studies/theological-studies-courses.html',
+    'PHIL':'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-220-department-of-philosophy/philosophy-courses.html',
+    'ITAL':'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-060-department-of-classics-modern-languages-and-linguistics/italian-courses.html',
 };
 
 export const config = {

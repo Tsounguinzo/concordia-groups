@@ -17,7 +17,7 @@
     export let courses;
     let currFilter = 'NONE';
 
-    const filters = ["NONE", "ENGR", "ECON", "PHYS", "MATH", "MIAE", "CHEM", "COMP", "SOEN", "ELEC", "COEN", "MAST", "ENCS", "AERO", "MECH", "INDU", "BIOL", "EDUC", "RELI", "MARK", "THEO"]
+    const filters = ["NONE", "ENGR", "ECON", "PHYS", "MATH", "ITAL", "MIAE", "CHEM", "COMP", "SOEN", "ELEC", "COEN", "MAST", "ENCS", "AERO", "MECH", "INDU", "BIOL", "EDUC", "PHIL", "RELI", "MARK", "THEO"]
 
     // Copy the provided courses data for searching functionality.
     const searchCourses: Course[] = courses.map((course: Course) => ({...course}));
