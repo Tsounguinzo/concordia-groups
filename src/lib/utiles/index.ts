@@ -108,7 +108,7 @@ export const searchHandler = <T extends Record<PropertyKey, any>>(
     let data;
 
     if(filter === 'NONE') {
-        maxResults = 20
+        maxResults = 19
         data = store.data
     } else {
         maxResults = 1000

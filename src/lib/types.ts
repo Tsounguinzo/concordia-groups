@@ -2,7 +2,7 @@ export type Course = {
         ID: string;
         title: string;
         subject: string;
-        catalog: number;
+        catalog: number|string;
         career: string;
         classUnit: number;
         prerequisites: string;
