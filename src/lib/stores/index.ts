@@ -146,6 +146,10 @@ export const coursesAndThierLinks = {
     'PHIL_362': 'https://chat.whatsapp.com/HS4o1R4Z7PFEdAKIH1QNx2',
     'PHIL_377': 'https://chat.whatsapp.com/GpNildIZqxSG2BnhjIF5Hl',
     'PHIL_387': 'https://chat.whatsapp.com/EevDkOEfqkE1jx4mvr8fRn',
+    'PHYS_206': 'https://chat.whatsapp.com/L5Pfj10fvhBI60mjhZ82D7',
+    'PHYS_273': 'https://chat.whatsapp.com/HWRP86BzkiNGPJJU4HmlPu',
+    'CHEM_206': 'https://chat.whatsapp.com/GBhJ5cpLj0n1puD5u4mvew',
+    'CHEM_221': 'https://chat.whatsapp.com/K5ByQykL7OhKYhzNuYKNJf',
 };
 
 export const subjectBaseUrls: { [key: string]: string } = {
