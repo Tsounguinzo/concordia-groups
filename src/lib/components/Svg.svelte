@@ -3,9 +3,9 @@
 
     export let size: number = 20
     export let stroke: boolean = false
+    export let viewBox: string = "0 0 24 24"
 
     let focusable: "true" | "false" = "true"
-    let viewBox: string = "0 0 24 24"
     let cls = "shrink-0 " + (stroke ? "stroke-current stroke-2 fill-transparent" : "fill-current")
 </script>
 

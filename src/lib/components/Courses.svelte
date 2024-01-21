@@ -57,7 +57,7 @@
 
     <SearchBox searchQuery={searchStore}/>
 
-    <Filters>
+    <Filters choice={currFilter}>
         {#each filters as filter}
             <FilterBox currentValue={currFilter} value={filter} on:click={() => currFilter=filter }/>
         {/each}
