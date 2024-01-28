@@ -180,13 +180,14 @@ export const config = {
     url: "https://concordia-groups.web.app",
     ogImage: "/og.png",
     description:
-        "Join your course's study group chat on WhatsApp or Discord",
+        "Join your course's study group chat on WhatsApp",
     links: {
         twitter: "",
         github: ""
     },
-    keywords: `Concordia University,Study groups,help,courses,Course Chat,WhatsApp Course Groups,Study Chat,Discord Study Groups`
+    keywords: `Concordia University,Study hub, Study groups,help,courses,Course Chat,WhatsApp Course Groups,Study Chat,Discord Study Groups`
 };
 
+export const header = writable({});
 export let isLinkPopUpModelOpen = writable(false);
 export let linkPopUpModelData = writable({courseName: "", courseWhatsappURL: "", courseDiscordURL: ""})

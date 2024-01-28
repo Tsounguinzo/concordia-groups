@@ -7,9 +7,11 @@ export default {
     },
     extend: {
       backgroundColor: {
-        'primary': 'rgb(0,0,0)',
+        'primary': 'gray-950',
       }
     },
   },
-  plugins: [],
+  plugins: [
+      require('@tailwindcss/typography')
+  ],
 }

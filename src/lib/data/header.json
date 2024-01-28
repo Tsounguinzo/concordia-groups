@@ -1,0 +1,32 @@
+[
+  {
+    "href": "/",
+    "ariaLabel": "Home",
+    "label": "Home",
+    "svgContent": "<path d='m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'></path><polyline points='9 22 9 12 15 12 15 22'></polyline>"
+  },
+  {
+    "href": "/search",
+    "ariaLabel": "Search",
+    "label": "Search",
+    "svgContent":"<path d='M18.031 16.6168L22.3137 20.8995L20.8995 22.3137L16.6168 18.031C15.0769 19.263 13.124 20 11 20C6.032 20 2 15.968 2 11C2 6.032 6.032 2 11 2C15.968 2 20 6.032 20 11C20 13.124 19.263 15.0769 18.031 16.6168ZM16.0247 15.8748C17.2475 14.6146 18 12.8956 18 11C18 7.1325 14.8675 4 11 4C7.1325 4 4 7.1325 4 11C4 14.8675 7.1325 18 11 18C12.8956 18 14.6146 17.2475 15.8748 16.0247L16.0247 15.8748Z'></path>"
+  },
+  {
+    "href": "/policy",
+    "ariaLabel": "Policy",
+    "label": "Policy",
+    "svgContent":"<path d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10'></path>"
+  },
+  {
+    "href": "/categories",
+    "ariaLabel": "Categories",
+    "label": "Categories",
+    "svgContent": "<path d='M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2'></path><path d='M18 14h-8'></path><path d='M15 18h-5'></path><path d='M10 6h8v4h-8V6Z'></path>"
+  },
+  {
+    "href": "/about",
+    "ariaLabel": "About",
+    "label": "About",
+    "svgContent": "<path d='M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2'></path><circle cx='12' cy='7' r='4'></circle>"
+  }
+]

@@ -2,6 +2,7 @@ import axios from "axios";
 import {load} from "cheerio";
 import {writable} from "svelte/store";
 import type {SearchStoreModel} from "$lib/types";
+import {COURSES_STORAGE_KEY, NUMBER_OF_COURSES} from "$lib/constants";
 
 //////////////////////////
 // Helper functions
@@ -157,3 +158,4 @@ export const searchHandler = <T extends Record<PropertyKey, any>>(
 
     store.filtered = rankedResults.map(item => item.course);
 }
+export let sharedData = writable(null);

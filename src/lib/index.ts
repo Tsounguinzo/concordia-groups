@@ -1,1 +1,12 @@
-// place files you want to import through the `$lib` alias in this folder.
+export { default as Svg } from "./components/Svg/Svg.svelte"
+export { default as Category } from "./components/Card/CategoryCard.svelte"
+export { default as Course } from "./components/Card/CourseCard.svelte"
+export { default as Post } from "./components/Card/PostCard.svelte"
+export { default as CategoriesGrid } from "./components/Grid/CategoriesGrid.svelte"
+export { default as CoursesGrid } from "./components/Grid/CourseGrid.svelte"
+export { default as Header } from "./components/Layout/Header.svelte"
+export { default as Footer } from "./components/Layout/Footer.svelte"
+export { default as MarkDown } from "./components/MarkDown/MarkDown.svelte"
+export { default as NavBar } from "./components/NavBar/NavBar.svelte"
+export { default as NavItem } from "./components/NavBar/NavItem.svelte"
+export { default as Loading } from "./components/Loading/Loading.svelte"

@@ -1,0 +1,163 @@
+[
+  {
+    "href": "categories/SPECIAL",
+    "imageSrc": "category/SPECIAL.webp",
+    "altText": "SPECIAL image",
+    "title": "SPECIAL - Special Category",
+    "description": "Discover the unique offerings of collaborative learning through our club's groups."
+  },
+  {
+    "href": "categories/ENGR",
+    "imageSrc": "category/ENGR.webp",
+    "altText": "ENGR image",
+    "title": "ENGR - Engineering",
+    "description": "Explore the world of Engineering through our club's groups."
+  },
+  {
+    "href": "categories/ECON",
+    "imageSrc": "category/ECON.webp",
+    "altText": "ECON image",
+    "title": "ECON - Economics",
+    "description": "Explore the world of Economics through our club's groups."
+  },
+  {
+    "href": "categories/PHYS",
+    "imageSrc": "category/PHYS.webp",
+    "altText": "PHYS image",
+    "title": "PHYS - Physics",
+    "description": "Explore the world of Physics through our club's groups."
+  },
+  {
+    "href": "categories/MATH",
+    "imageSrc": "category/MATH.webp",
+    "altText": "MATH image",
+    "title": "MATH - Mathematics",
+    "description": "Explore the world of Mathematics through our club's groups."
+  },
+  {
+    "href": "categories/ITAL",
+    "imageSrc": "category/ITAL.webp",
+    "altText": "ITAL image",
+    "title": "ITAL - Italian Studies",
+    "description": "Explore the world of Italian Studies through our club's groups."
+  },
+  {
+    "href": "categories/MIAE",
+    "imageSrc": "category/MIAE.webp",
+    "altText": "MIAE image",
+    "title": "MIAE - Mechanical and Industrial Engineering",
+    "description": "Explore the world of Mechanical and Industrial Engineering through our club's groups."
+  },
+  {
+    "href": "categories/CHEM",
+    "imageSrc": "category/CHEM.webp",
+    "altText": "CHEM image",
+    "title": "CHEM - Chemistry",
+    "description": "Explore the world of Chemistry through our club's groups."
+  },
+  {
+    "href": "categories/COMP",
+    "imageSrc": "category/COMP.webp",
+    "altText": "COMP image",
+    "title": "COMP - Computer Science",
+    "description": "Explore the world of Computer Science through our club's groups."
+  },
+  {
+    "href": "categories/SOEN",
+    "imageSrc": "category/SOEN.webp",
+    "altText": "SOEN image",
+    "title": "SOEN - Software Engineering",
+    "description": "Explore the world of Software Engineering through our club's groups."
+  },
+  {
+    "href": "categories/ELEC",
+    "imageSrc": "category/ELEC.webp",
+    "altText": "ELEC image",
+    "title": "ELEC - Electrical Engineering",
+    "description": "Explore the world of Electrical Engineering through our club's groups."
+  },
+  {
+    "href": "categories/COEN",
+    "imageSrc": "category/COEN.webp",
+    "altText": "COEN image",
+    "title": "COEN - Computer Engineering",
+    "description": "Explore the world of Computer Engineering through our club's groups."
+  },
+  {
+    "href": "categories/MAST",
+    "imageSrc": "category/MAST.webp",
+    "altText": "MAST image",
+    "title": "MAST - Mathematics and Statistics",
+    "description": "Explore the world of Mathematics and Statistics through our club's groups."
+  },
+  {
+    "href": "categories/ENCS",
+    "imageSrc": "category/ENCS.webp",
+    "altText": "ENCS image",
+    "title": "ENCS - Engineering and Computer Science",
+    "description": "Explore the world of Engineering and Computer Science through our club's groups."
+  },
+  {
+    "href": "categories/AERO",
+    "imageSrc": "category/AERO.webp",
+    "altText": "AERO image",
+    "title": "AERO - Aerospace Engineering",
+    "description": "Explore the world of Aerospace Engineering through our club's groups."
+  },
+  {
+    "href": "categories/MECH",
+    "imageSrc": "category/MECH.webp",
+    "altText": "MECH image",
+    "title": "MECH - Mechanical Engineering",
+    "description": "Explore the world of Mechanical Engineering through our club's groups."
+  },
+  {
+    "href": "categories/INDU",
+    "imageSrc": "category/INDU.webp",
+    "altText": "INDU image",
+    "title": "INDU - Industrial Engineering",
+    "description": "Explore the world of Industrial Engineering through our club's groups."
+  },
+  {
+    "href": "categories/BIOL",
+    "imageSrc": "category/BIOL.webp",
+    "altText": "BIOL image",
+    "title": "BIOL - Biology",
+    "description": "Explore the world of Biology through our club's groups."
+  },
+  {
+    "href": "categories/EDUC",
+    "imageSrc": "category/EDUC.webp",
+    "altText": "EDUC image",
+    "title": "EDUC - Education",
+    "description": "Explore the world of Education through our club's groups."
+  },
+  {
+    "href": "categories/PHIL",
+    "imageSrc": "category/PHIL.webp",
+    "altText": "PHIL image",
+    "title": "PHIL - Philosophy",
+    "description": "Explore the world of Philosophy through our club's groups."
+  },
+  {
+    "href": "categories/RELI",
+    "imageSrc": "category/RELI.webp",
+    "altText": "RELI image",
+    "title": "RELI - Religious Studies",
+    "description": "Explore the world of Religious Studies through our club's groups."
+  },
+  {
+    "href": "categories/MARK",
+    "imageSrc": "category/MARK.webp",
+    "altText": "MARK image",
+    "title": "MARK - Marketing",
+    "description": "Explore the world of Marketing through our club's groups."
+  },
+  {
+    "href": "categories/THEO",
+    "imageSrc": "category/THEO.webp",
+    "altText": "THEO image",
+    "title": "THEO - Theology",
+    "description": "Explore the world of Theology through our club's groups."
+  }
+]
