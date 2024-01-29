@@ -24,9 +24,6 @@
 
 <slot/>
 
-<Footer/>
-
-
 <style>
     ._heroGradient {
         --gradient-size: clamp(200px, 60vh, 650px);

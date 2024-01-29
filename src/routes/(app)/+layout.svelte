@@ -7,5 +7,3 @@
 <Header title={$header.title} subtitle={$header.subtitle}/>
 
 <slot />
-
-<Footer/>
