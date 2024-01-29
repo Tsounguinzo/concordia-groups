@@ -4,18 +4,16 @@
     import Loading from "$lib/components/OldUI/common/Loading.svelte";
     import {sharedData} from "$lib/utiles";
 
-    $: courses = sharedData ? Promise.resolve({courses: $sharedData}) : Promise.resolve({courses: []});
+    $: courses = $sharedData;
 
 </script>
 
-{#await courses}
-    <Loading message="Loading Courses"/>
-{:then value}
-    {#if value.courses === null || value.courses.length === 0}
+{#if courses}
+     {#if courses.length === 0}
         <Error/>
     {:else }
-        <Courses courses={value.courses}/>
+        <Courses {courses}/>
     {/if}
-{:catch error}
-    <Error/>
-{/await}
+{:else }
+    <Loading message="Loading Courses"/>
+{/if}

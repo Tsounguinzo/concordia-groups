@@ -1,6 +1,6 @@
 <script lang="ts">
     import "../../app.css";
-    import {Footer, Svg} from "$lib";
+    import {Footer, Back} from "$lib";
     import {header} from "$lib/stores";
 
     let y: number;
@@ -10,9 +10,7 @@
 <svelte:window bind:scrollY={y}/>
 
 <section class="h-[100dvh] isolate flex flex-col items-center justify-end overflow-hidden p-4 pb-20 transition-opacity duration-700 ease-in-out text-gray-12 md:text-center opacity-{y > 200 ? 0 : 100}">
-    <a class="border-2 rounded-full absolute top-1/3 left-[10%] cursor-pointer w-[5em] h-[5em] flex flex-col justify-center items-center hover:animate-ping" href="/" on:click={() => history.back()}>
-        <Svg size={30} svgContent= "<path d='M7.82843 10.9999H20V12.9999H7.82843L13.1924 18.3638L11.7782 19.778L4 11.9999L11.7782 4.22168L13.1924 5.63589L7.82843 10.9999Z'></path>" />
-    </a>
+    <Back/>
     <div class="_heroGradient left-1/2 top-[clamp(10px,30vh,80px)] -z-0 overflow-hidden rounded-full pointer-events-none fixed blur-[60px]"
          style="--gradient: linear-gradient({$header.gradient});">
     </div>

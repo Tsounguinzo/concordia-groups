@@ -9,7 +9,6 @@
     import {createSearchStore, searchHandler} from "$lib/utiles";
     import {onDestroy} from "svelte";
     import type {Course, SearchStoreModel} from "$lib/types";
-    import Footer from "./layout/Footer.svelte";
     import CourseElement from "./CourseElement.svelte";
     import FilterBox from "$lib/components/OldUI/common/FilterBox.svelte";
     import Filters from "$lib/components/OldUI/layout/Filters.svelte";
@@ -17,7 +16,7 @@
     export let courses;
     let currFilter = 'NONE';
 
-    const filters = ["NONE", "ENGR", "ECON", "PHYS", "MATH", "ITAL", "MIAE", "CHEM", "COMP", "SOEN", "ELEC", "COEN", "MAST", "ENCS", "AERO", "MECH", "INDU", "BIOL", "EDUC", "PHIL", "RELI", "MARK", "THEO"]
+    const filters = ["NONE", "ENGR", "ECON", "PHYS", "MATH", "ITAL", "MIAE", "CHEM", "COMP", "SOEN", "ELEC", "COEN", "MAST", "ENCS", "AERO", "MECH", "INDU", "BIOL", "EDUC", "PHIL", "RELI", "MARK", "THEO", "ACCO"]
 
     // Copy the provided courses data for searching functionality.
     const searchCourses: Course[] = courses.map((course: Course) => ({...course}));
@@ -69,7 +68,7 @@
         <Grid>
 
             {#if currFilter === 'NONE'}
-                <CourseElement course={bodyDoubling} img="/bodyDoubling-img.webp"/>
+                <CourseElement course={bodyDoubling} img="/bodyDoubling.webp"/>
             {/if}
 
             {#each $searchStore.filtered as course}
@@ -78,7 +77,5 @@
 
         </Grid>
     {/if}
-
-    <Footer/>
 
 </Wrapper>

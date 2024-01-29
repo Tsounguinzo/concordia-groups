@@ -92,7 +92,7 @@
             <Svg size={24} stroke={true} class="duration-500 group-hover:-translate-x-2">
                 <path d="M15 5L8 12L15 19"></path>
             </Svg>
-            <div class="duration-500 group-hover:-translate-x-2 pl-1 font-medium">All Groups</div>
+            <div class="duration-500 group-hover:-translate-x-2 pl-1 font-medium">Search</div>
         </a>
 
         <button class="border border-green-400 px-2 py-1 rounded-lg bg-green-500 hover:bg-green-600 duration-500 ease-in-out"
@@ -103,7 +103,7 @@
     <!------------------------End Header------------------------->
 
     <!------------------------Panels start----------------------------->
-    <div class="relative flex w-full grow overflow-hidden max-md:flex-col">
+    <div class="relative flex w-full grow overflow-hidden max-md:flex-col border-b-4 border-b-gray-800">
 
         <div aria-required="false"
              class="flex w-full overflow-hidden rounded-xl p-1.5 md:hidden mb-2 flex-shrink-0 self-center" dir="ltr"

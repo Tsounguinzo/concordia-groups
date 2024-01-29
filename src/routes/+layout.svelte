@@ -4,6 +4,7 @@
     import {onMount} from "svelte";
     import {COURSES_STORAGE_KEY, NUMBER_OF_COURSES} from "$lib/constants";
     import {sharedData} from "$lib/utiles";
+    import {Footer} from "$lib";
 
     onMount(async () => {
         const storedData = localStorage.getItem(COURSES_STORAGE_KEY);
@@ -21,3 +22,5 @@
 <Metadata />
 
 <slot />
+
+<Footer/>

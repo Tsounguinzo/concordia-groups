@@ -150,6 +150,7 @@ export const coursesAndThierLinks = {
     'PHYS_273': 'https://chat.whatsapp.com/HWRP86BzkiNGPJJU4HmlPu',
     'CHEM_206': 'https://chat.whatsapp.com/GBhJ5cpLj0n1puD5u4mvew',
     'CHEM_221': 'https://chat.whatsapp.com/K5ByQykL7OhKYhzNuYKNJf',
+    'ACCO_220': 'https://chat.whatsapp.com/Kv3RIKl5KIVFZ5wpBWROwr',
 };
 
 export const subjectBaseUrls: { [key: string]: string } = {
@@ -159,6 +160,7 @@ export const subjectBaseUrls: { [key: string]: string } = {
     'MATH': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-200-department-of-mathematics-and-statistics/mathematics-and-statistics-courses.html',
     'MAST': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-31-faculty-of-arts-and-science/section-31-200-department-of-mathematics-and-statistics/mathematics-and-statistics-courses.html',
     'MIAE': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-60-engineering-course-descriptions.html',
+    'ACCO': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-60-engineering-course-descriptions.html',
     'ENGR': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-60-engineering-course-descriptions.html',
     'AERO': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-60-engineering-course-descriptions.html',
     'ENCS': 'https://www.concordia.ca/academics/undergraduate/calendar/current/section-71-gina-cody-school-of-engineering-and-computer-science/section-71-60-engineering-course-descriptions.html',
